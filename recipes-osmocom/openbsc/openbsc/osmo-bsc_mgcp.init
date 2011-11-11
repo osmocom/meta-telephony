@@ -1,0 +1,49 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:		osmo-bsc_mgcp
+# Required-Start:	$syslog $networking
+# Required-Stop:	$syslog
+# Default-Start:	5
+# Default-Stop:		1
+# Short-Description:	Osmocom GSM BSC MGCP proxy
+### END INIT INFO
+
+DAEMON=/usr/bin/bsc_mgcp
+NAME=osmo-bsc_mgcp
+DESC="Osmocom GSM BSC MGCP proxy"
+NORMAL_ARGS="-D -c /etc/osmocom/bsc_mgcp.cfg"
+
+OSMOBTS_EXTRA_ARGS=""
+NO_START=1
+
+set -e
+
+test ! -r /etc/default/osmo-bsc_mgcp || . /etc/default/osmo-bsc_mgcp
+test "$NO_START" = "0" || exit 0
+test -x "$DAEMON" || exit 0
+
+case "$1" in
+  start)
+	echo -n "Starting $DESC: "
+	start-stop-daemon -S \
+	  -x "$DAEMON" -- $NORMAL_ARGS $OSMOBTS_EXTRA_ARGS
+	echo "$NAME."
+	;;
+  stop)
+	echo -n "Stopping $DESC: "
+	start-stop-daemon -K -x "$DAEMON"
+	echo "$NAME."
+	;;
+  restart|force-reload)
+	echo -n "Restarting $DESC: "
+	start-stop-daemon -K -x "$DAEMON"
+	echo "$NAME."
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
