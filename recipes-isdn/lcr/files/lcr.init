@@ -1,0 +1,21 @@
+#!/bin/sh
+
+NAME=lcr
+
+set -e
+
+case "$1" in
+  start)
+    /usr/sbin/lcr fork 
+    echo "Forked asterisk"
+    ;;
+  stop)
+    echo "Can not stop it"
+    ;;
+  *)
+    N=/etc/init.d/$NAME                                  
+    echo "Usage: $N {start|stop|restart|force-reload}" >&2
+    exit 1  
+esac
+
+exit 0

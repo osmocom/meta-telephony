@@ -1,0 +1,44 @@
+Index: git/Makefile.am
+===================================================================
+--- git.orig/Makefile.am	2011-10-14 00:53:48.245117239 +0800
++++ git/Makefile.am	2011-10-14 00:53:48.633117240 +0800
+@@ -53,7 +53,7 @@
+ 
+ GSM_SOURCE += gsm_audio.c gsm.cpp
+   
+-GSM_LIB += /usr/lib/libgsm.a
++GSM_LIB += -lgsm
+ 
+ #gsm_audio.po: gsm_audio.c gsm_audio.h
+ #	$(CC) -D_GNU_SOURCE -fPIC -c gsm_audio.c -o gsm_audio.po
+Index: git/configure.ac
+===================================================================
+--- git.orig/configure.ac	2011-10-14 00:53:48.257117239 +0800
++++ git/configure.ac	2011-10-14 00:53:48.633117240 +0800
+@@ -178,12 +178,7 @@
+ AM_CONDITIONAL(ENABLE_GSM, test "x$with_gsm_bs" == "xyes" -o "x$with_gsm_ms" == "xyes")
+ 
+ AS_IF([test "x$with_gsm_bs" == xyes -o "x$with_gsm_ms" == xyes],
+-	[AC_MSG_CHECKING(/usr/include/gsm/gsm.h)
+-	if test -e /usr/include/gsm/gsm.h; then
+-		AC_MSG_RESULT(yes)
+-	else
+-	AC_MSG_FAILURE([You have enabled GSM, but /usr/include/gsm/gsm.h not found! Please install the lossy GSM codec. Be sure to install it in /usr/ and not in /usr/local/. You will also find a copy on http://www.linux-call-router.de.])
+-	fi
++	AC_MSG_RESULT(yes...why not use ac_check_headers...)
+ 	])
+ 
+ # check for ss5
+Index: git/gsm_audio.c
+===================================================================
+--- git.orig/gsm_audio.c	2011-10-14 00:53:48.000000000 +0800
++++ git/gsm_audio.c	2011-10-14 00:55:12.929117386 +0800
+@@ -10,7 +10,7 @@
+ \*****************************************************************************/ 
+ 
+ extern "C" {
+-#include "/usr/include/gsm/gsm.h"
++#include <gsm/gsm.h>
+ 
+ 
+ /* create gsm instance */
