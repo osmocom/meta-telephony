@@ -2,12 +2,11 @@ DESCRITOPN = "OpenGGSN a Free Software GGSN"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "0.91+gitr${SRCPV}"
-PR = "r9"
+PR = "r10"
 
 SRCREV = "fe5040967513616731d8151b22d26bdf74d65111"
 SRC_URI = "git://ggsn.git.sourceforge.net/gitroot/ggsn/ggsn \
            file://openggsn.init                             \
-           file://ggsn.conf                                 \
           "
 S = "${WORKDIR}/git"
 
@@ -19,9 +18,6 @@ inherit autotools update-rc.d
 do_install_append() {
 	install -d ${D}${sysconfdir}/init.d
 	install -m 0776 ${WORKDIR}/openggsn.init ${D}${sysconfdir}/init.d/openggsn
-	install -m 0660 ${WORKDIR}/ggsn.conf ${D}${sysconfdir}/
-
-	# copy the config?
 }
 
 INITSCRIPT_PACKAGES = "openggsn"
