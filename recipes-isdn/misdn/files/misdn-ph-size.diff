@@ -1,0 +1,13 @@
+diff --git a/include/mISDN/mbuffer.h b/include/mISDN/mbuffer.h
+index 5e3dc96..8e6ed52 100644
+--- a/include/mISDN/mbuffer.h
++++ b/include/mISDN/mbuffer.h
+@@ -54,7 +54,7 @@ struct mbuffer {
+ 	struct l3_msg		l3;
+ } __attribute__((__may_alias__));
+ 
+-#define	MBUFFER_DATA_SIZE	280
++#define	MBUFFER_DATA_SIZE	400
+ 
+ /*
+  * init mbuffer caching
