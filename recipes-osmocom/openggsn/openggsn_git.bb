@@ -22,7 +22,6 @@ do_install_append() {
 
 INITSCRIPT_PACKAGES = "openggsn"
 
-CONFFILES_openggsn = "${sysconfdir}/ggsn.conf"
 INITSCRIPT_NAME_openggsn = "openggsn"
 INITSCRIPT_PARAMS_openggsn = "defaults 29 29"
 RDEPENDS_${PN} += "iptables kernel-module-ipt-masquerade"
