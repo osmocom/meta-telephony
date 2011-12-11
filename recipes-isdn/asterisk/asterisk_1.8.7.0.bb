@@ -7,7 +7,7 @@ HOMEPAGE = "http://www.asterisk.org"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3c6764ffcbe996d1d8f919b393ccdd67"
 
-PR = "r2"
+PR = "r3"
 
 SRC_URI = "http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${PV}.tar.gz \
            file://modules.conf            \
@@ -66,10 +66,6 @@ do_configure_append() {
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME_${PN} = "asterisk"
 INITSCRIPT_PARAMS_${PN} = "defaults 29 29"
-
-CONFFILES_${PN} = "${sysconfdir}/asterisk/extensions.conf \
-		   ${sysconfdir}/asterisk/modules.conf    \
-		   ${sysconfdir}/asterisk/sip.conf"
 
 PACKAGES =+ "${PN}-moh"
 
