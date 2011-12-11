@@ -4,7 +4,7 @@ DEPENDS_append_geode = "dahdi-linux"
 HOMEPAGE = "http://openbsc.gnumonks.org"
 LICENSE = "GPL"
 
-INC_PR="r2"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
