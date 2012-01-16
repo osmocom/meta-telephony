@@ -4,13 +4,12 @@ HOMEPAGE = "http://isdn.eversberg.eu/"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
-PV = "1.10"
-PR = "r10"
+PV = "1.10+gitr${SRCPV}"
+PR = "r14"
 
-SRCREV = "27ade6eeb9859a0702e77b27ca0abed63d298cda"
-SRC_URI = "git://git.misdn.org/lcr.git \
-           file://lcr.init             \
-           file://gsm-diff.patch"
+SRCREV = "cd2834a10ceb14f8d2e70334a89b531119b954d4"
+SRC_URI = "git://git.misdn.eu/lcr.git \
+           file://lcr.init             "
 S = "${WORKDIR}/git"
 
 EXTRA_OECONF = "--with-gsm-bs --with-asterisk"
