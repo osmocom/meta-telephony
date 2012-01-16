@@ -11,7 +11,11 @@ PR = "r3"
 
 SRC_URI = "http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${PV}.tar.gz \
            file://modules.conf            \
-           file://asterisk.init"
+           file://asterisk.init           "
+
+SRC_URI[md5sum] = "783b2da2036745edeea8885c62bbc8bf"
+SRC_URI[sha256sum] = "ed98204f6261e1362c673e595823c668ae39b9833daec9127a4936cf9f4890e1"
+
 
 EXTRA_OECONF = " \
         --without-curses \
