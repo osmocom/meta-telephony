@@ -1,5 +1,5 @@
 # Copyright (C) 2007-2008, Stelios Koroneos - Digital OPSiS, All Rights Reserved
-# Copyright (C) 2011, sysmocom - systems for mobile communications GmbH
+# Copyright (C) 2011-2012, sysmocom - systems for mobile communications GmbH
 # Released under the MIT license (see packages/COPYING)
 DESCRITOPN = "asterisk PBX"
 DEPENDS = "openssl ncurses"
@@ -7,11 +7,12 @@ HOMEPAGE = "http://www.asterisk.org"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3c6764ffcbe996d1d8f919b393ccdd67"
 
-PR = "r3"
+PR = "r4"
 
 SRC_URI = "http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-${PV}.tar.gz \
            file://modules.conf            \
-           file://asterisk.init           "
+           file://asterisk.init           \
+           file://stop-crash.patch        "
 
 SRC_URI[md5sum] = "783b2da2036745edeea8885c62bbc8bf"
 SRC_URI[sha256sum] = "ed98204f6261e1362c673e595823c668ae39b9833daec9127a4936cf9f4890e1"

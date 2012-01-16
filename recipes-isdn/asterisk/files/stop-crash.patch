@@ -1,0 +1,13 @@
+Index: asterisk-1.8.8.1/res/res_rtp_asterisk.c
+===================================================================
+--- asterisk-1.8.8.1.orig/res/res_rtp_asterisk.c	2011-09-20 08:56:20.000000000 +0800
++++ asterisk-1.8.8.1/res/res_rtp_asterisk.c	2012-01-16 02:45:57.227713136 +0800
+@@ -1902,7 +1902,7 @@
+ 								    "IAJitter: %u\r\n"
+ 								    "LastSR: %lu.%010lu\r\n"
+ 					      "DLSR: %4.4f(sec)\r\n",
+-					      ast_sockaddr_stringify(&addr),
++					      "NA" /*ast_sockaddr_stringify(&addr)*/,
+ 					      pt, (pt == 200) ? "Sender Report" : (pt == 201) ? "Receiver Report" : (pt == 192) ? "H.261 FUR" : "Unknown",
+ 					      rc,
+ 					      rtcpheader[i + 1],
