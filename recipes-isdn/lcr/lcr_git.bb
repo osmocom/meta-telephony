@@ -5,7 +5,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
 PV = "1.10+gitr${SRCPV}"
-PR = "r15"
+PR = "r16"
 
 SRCREV = "cd2834a10ceb14f8d2e70334a89b531119b954d4"
 SRC_URI = "git://git.misdn.eu/lcr.git \
@@ -37,4 +37,7 @@ FILES_${PN}-vbox-en = "/usr/local/lcr/vbox_english"
 do_install_append() {
 	install -d ${D}${sysconfdir}/init.d
 	install -m 0775 ${WORKDIR}/lcr.init ${D}${sysconfdir}/init.d/lcr
+
+	rm ${D}/usr/local/lcr/routing.conf
+	rm ${D}/usr/local/lcr/interface.conf
 }
