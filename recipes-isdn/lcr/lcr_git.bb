@@ -5,7 +5,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
 PV = "1.10+gitr${SRCPV}"
-PR = "r14"
+PR = "r15"
 
 SRCREV = "cd2834a10ceb14f8d2e70334a89b531119b954d4"
 SRC_URI = "git://git.misdn.eu/lcr.git \
@@ -23,7 +23,7 @@ PACKAGES =+ "${PN}-tones-de ${PN}-vbox-de \
 
 FILES_${PN} += "/usr/local ${libdir}/asterisk/modules"
 FILES_${PN}-dbg += "${libdir}/asterisk/modules/.debug"
-CONFFILES_${PN} = "/usr/local/lcr/interface.conf /usr/local/lcr/routing.conf /usr/local/lcr/options.conf"
+CONFFILES_${PN} = "/usr/local/lcr/options.conf"
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME_${PN} = "lcr"
 INITSCRIPT_PARAMS_${PN} = "defaults 30 30"
