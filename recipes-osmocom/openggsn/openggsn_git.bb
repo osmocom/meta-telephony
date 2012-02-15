@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "0.91+gitr${SRCPV}"
 PR = "r10"
 
-SRCREV = "fe5040967513616731d8151b22d26bdf74d65111"
+SRCREV = "95848bafcef145d776d70a73f7bdc3fe37e85724"
 SRC_URI = "git://ggsn.git.sourceforge.net/gitroot/ggsn/ggsn \
            file://openggsn.init                             \
           "
