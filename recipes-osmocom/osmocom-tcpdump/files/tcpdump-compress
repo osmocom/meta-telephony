@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -f $1.pcap.gz || true
+gzip -c $1 > $1.pcap.gz && rm -f $1 || true
