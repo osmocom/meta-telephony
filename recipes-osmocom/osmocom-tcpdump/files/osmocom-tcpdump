@@ -1,6 +1,6 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          on-waves-capture
+# Provides:          osmocom-tcpdump
 # Required-Start:    $remote_fs $network
 # Should-Start:      udev
 # Required-Stop:     $remote_fs $network
