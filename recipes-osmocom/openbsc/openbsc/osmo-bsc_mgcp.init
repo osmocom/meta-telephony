@@ -8,7 +8,7 @@
 # Short-Description:	Osmocom GSM BSC MGCP proxy
 ### END INIT INFO
 
-DAEMON=/usr/bin/bsc_mgcp
+DAEMON=/usr/bin/osmo-bsc_mgcp
 NAME=osmo-bsc_mgcp
 DESC="Osmocom GSM BSC MGCP proxy"
 NORMAL_ARGS="-D -c /etc/osmocom/bsc_mgcp.cfg"

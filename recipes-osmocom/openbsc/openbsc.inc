@@ -9,7 +9,7 @@ RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc_mgcp.init \
 	   file://osmo-bsc.init"
-INC_PR = "r11.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r12.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc "
@@ -49,7 +49,7 @@ FILES_osmo-bsc = " ${bindir}/osmo-bsc \
 CONFFILES_osmo-bsc-mgcp = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
 INITSCRIPT_NAME_osmo-bsc-mgcp = "osmo-bsc-mgcp"
 INITSCRIPT_PARAMS_osmo-bsc-mgcp = "defaults 30 30"
-FILES_osmo-bsc-mgcp = " ${bindir}/bsc_mgcp \
+FILES_osmo-bsc-mgcp = " ${bindir}/osmo-bsc_mgcp \
 		${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg \
 		${sysconfdir}/init.d/osmo-bsc-mgcp"
 
