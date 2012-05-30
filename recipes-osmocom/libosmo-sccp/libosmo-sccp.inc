@@ -1,7 +1,7 @@
 DESCRITOPN = "An utility library for Open Source Mobile Communications"
 DEPENDS = "libosmocore"
 HOMEPAGE = "http://openbsc.gnumonks.org"
-LICENSE = "GPL"
+LICENSE = "AGPLv3"
 
 INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 

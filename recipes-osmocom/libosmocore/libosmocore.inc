@@ -1,6 +1,6 @@
 DESCRITOPN = "An utility library for Open Source Mobile Communications"
 HOMEPAGE = "http://openbsc.gnumonks.org"
-LICENSE = "GPL"
+LICENSE = "GPLv2+"
 
 INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 

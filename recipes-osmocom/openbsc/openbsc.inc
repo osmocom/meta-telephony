@@ -1,7 +1,7 @@
 DESCRITOPN = "OpenBSC a Free Software GSM BaseStationController"
 DEPENDS = "libdbi libosmocore libosmo-sccp libosmo-abis openggsn"
 HOMEPAGE = "http://openbsc.osmocom.org/"
-LICENSE = "AGPLv3"
+LICENSE = "AGPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 RDEPENDS_osmo-nitb = "libdbd-sqlite3"
