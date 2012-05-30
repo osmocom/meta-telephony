@@ -1,7 +1,7 @@
 DESCRITOPN = "Digium Asterisk Hardware Driver Interface - Linux kernel part"
 SECTION = "base"
 HOMEPAGE = "http://www.asterisk.org"
-LICENSE = "GPL"
+LICENSE = "GPLv2"
 RDEPENDS_${PN} = "kernel (${KERNEL_VERSION})"
 DEPENDS = "virtual/kernel"
 RRECOMMENDS_${PN} = "dahdi-firmware"

@@ -1,7 +1,7 @@
 DESCRITOPN = "Utilities for the DAHDI Asterisk Linux kernel drivers"
 DEPENDS = "dahdi-linux libnewt"
 HOMEPAGE = "http://www.asterisk.org"
-LICENSE = "GPL"
+LICENSE = "GPLv2"
 
 SRC_URI = "http://downloads.asterisk.org/pub/telephony/dahdi-tools/releases/dahdi-tools-${PV}.tar.gz"
 
