@@ -9,11 +9,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
 # Fork with wavecom support
 SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
            file://gsmd \
+           file://cell-log \
+           file://gsmd-respawn.sh \
            file://default"
 SRCREV = "28e25ae42da7d65face9ad2472075f7c4fc87e92"
 S = "${WORKDIR}/git"
 
-PR = "r8"
+PR = "r11.2"
 
 inherit autotools pkgconfig update-rc.d
 
@@ -21,17 +23,24 @@ inherit autotools pkgconfig update-rc.d
 # handle update-rc.d RDEPENDS_${PN} manually, we don't need it on
 # anything but gsmd
 
-INITSCRIPT_NAME = "gsmd"
-INITSCRIPT_PARAMS = "defaults 35"
+INITSCRIPT_PACKAGES = "${PN} ${PN}-tools-cell-log"
+INITSCRIPT_NAME_${PN} = "gsmd"
+INITSCRIPT_PARAMS_${PN} = "defaults 35"
+
+INITSCRIPT_NAME_${PN}-tools-cell-log = "cell-log"
+INITSCRIPT_PARAMS_${PN}-tools-cell-log = "defaults 40"
 
 do_install_append() {
 	install -d ${D}/${sysconfdir}/init.d
 	install -m 0755 ${WORKDIR}/gsmd ${D}/${sysconfdir}/init.d/
+	install -m 0755 ${WORKDIR}/cell-log ${D}/${sysconfdir}/init.d/
 	install -d ${D}/${sysconfdir}/default
 	install ${WORKDIR}/default ${D}/${sysconfdir}/default/gsmd
+	install -m 0755 ${WORKDIR}/gsmd-respawn.sh ${D}/${sysconfdir}/
 }
 
 PACKAGES =+ "\
+  ${PN}-tools-cell-log \
   ${PN}-tools \
   ${PN}-plugins \
   ${PN}-plugin-machine-generic \
@@ -60,8 +69,10 @@ RDEPENDS_${PN}-plugins = "\
 "
 
 RDEPENDS_${PN} += "update-rc.d"
+RDEPENDS_${PN}-tools-cell-log += "update-rc.d ${PN}"
 
 FILES_${PN}-dbg += "${libdir}/gsmd/.debug/*"
+FILES_${PN}-tools-cell-log = "${bindir}/cell_log ${sysconfdir}/cell-log"
 FILES_${PN}-tools = "${bindir}/*"
 FILES_${PN}-plugins = ""
 FILES_${PN}-dev += " ${libdir}/gsmd/*.la "

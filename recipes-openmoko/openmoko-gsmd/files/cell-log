@@ -1,0 +1,37 @@
+#! /bin/sh
+#
+# cell-log  This shell script starts and stops cell-log.
+#
+# chkconfig: 345 90 40
+# description: Cell-log monitors cell in the neighborhood.
+# processname: cell_log
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+case "$1" in
+    start)
+        echo -n "Starting cell-log: "
+        start-stop-daemon -S -b -x /etc/gsmd-respawn.sh /usr/bin/cell_log
+
+        if [ $? = 0 ]; then
+            echo "cell-log"
+        else
+            echo "(failed.)"
+        fi
+        ;;
+    stop)
+        echo -n "Stopping GSM daemon: "
+        start-stop-daemon -K -x /usr/bin/cell_log
+        echo "cell-log."
+        ;;
+    restart|force-reload)
+        $0 stop
+        $0 start
+        ;;
+    *)
+        echo "Usage: /etc/init.d/cell-log {start|stop|restart|force-reload}"
+        exit 1
+        ;;
+esac
+
+exit 0
