@@ -31,11 +31,10 @@ http://downloads.digium.com/pub/telephony/firmware/releases/zaptel-fw-tc400m-MR6
 http://downloads.digium.com/pub/telephony/firmware/releases/zaptel-fw-vpmadt032-1.07.tar.gz\
 	"
 
-SRC_URI = "http://downloads.asterisk.org/pub/telephony/dahdi-linux/releases/dahdi-linux-${PV}.tar.gz ${FIRMWARE_URI}"
-# why does this not work?
-#SRC_URI =+ "${FIRMWARE_URI}"
+SRC_URI = "http://downloads.asterisk.org/pub/telephony/dahdi-linux/releases/dahdi-linux-${PV}.tar.gz "
+SRC_URI =+ "${FIRMWARE_URI}"
 
-INC_PR="r3"
+INC_PR="r9"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ea5bed2f60d357618ca161ad539f7c0a"
 
@@ -47,6 +46,9 @@ do_configure() {
 	cp ${DL_DIR}/dahdi-fwload-*.tar.gz drivers/dahdi/firmware/
 	cp ${DL_DIR}/zaptel-fw-*.tar.gz drivers/dahdi/firmware/
 	cp ${DL_DIR}/dahdi-fw-*.tar.gz drivers/dahdi/firmware/
+
+	# Enable the mirror for pcap..
+        sed -i s,"\/\* #define CONFIG_DAHDI_MIRROR \*\/","#define CONFIG_DAHDI_MIRROR", ${S}/include/dahdi/dahdi_config.h
 }
 
 do_compile () {
@@ -72,5 +74,5 @@ PACKAGES =+ "dahdi-firmware"
 
 FILES_${PN} = "${base_libdir}/modules/ ${sysconfdir}/udev/rules.d"
 
-FILES_dahdi-firmware = "${base_libdir}/firmware /usr/share/dahdi"
+FILES_dahdi-firmware = "${base_libdir}/firmware ${datadir}/dahdi"
 PACKAGE_ARCH_dahdi-firmware = "all"
