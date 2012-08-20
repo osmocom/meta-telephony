@@ -1,6 +1,6 @@
 require libgsm.inc
 
-PR = ${INC_PR}.0
+PR = "${INC_PR}.0"
 
 S = "${WORKDIR}/gsm-1.0-pl13/"
 
