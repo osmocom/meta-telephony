@@ -25,7 +25,8 @@ EXTRA_OECONF = "--with-dbi-incdir=${STAGING_INCDIR} \
                 --disable-docs"
 
 FILES_${PN}-dbg += " ${libdir}/dbd/.debug/*.so"
-FILES_${PN}-dev += " ${libdir}/dbd/*.la ${libdir}/dbd/*.a"
+FILES_${PN}-dev += " ${libdir}/dbd/*.la "
+FILES_${PN}-staticdev += " ${libdir}/dbd/*.a"
 
 DESCRIPTION_libdbd-sqlite3 =  "SQLite3 database driver for libdbi"
 FILES_libdbd-sqlite3 = "${libdir}/dbd/libdbdsqlite3.so"
