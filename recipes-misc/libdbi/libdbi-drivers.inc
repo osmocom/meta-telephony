@@ -11,6 +11,8 @@ SECTION = "libs"
 PROVIDES = "libdbd-sqlite"
 DEPENDS = "libdbi sqlite3"
 
+INC_PR = "r1"
+
 SRC_URI = "${SOURCEFORGE_MIRROR}/libdbi-drivers/libdbi-drivers-${PV}.tar.gz"
 
 inherit autotools
