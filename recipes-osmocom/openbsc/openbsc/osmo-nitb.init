@@ -11,7 +11,7 @@
 DAEMON=/usr/bin/osmo-nitb
 NAME=osmo-nitb
 DESC="Osmocom GSM Network in the Box"
-NORMAL_ARGS="-D -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3"
+NORMAL_ARGS="-C -D -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3"
 
 OSMOBTS_EXTRA_ARGS=""
 NO_START=1
@@ -35,13 +35,12 @@ case "$1" in
 	echo "$NAME."
 	;;
   restart|force-reload)
-	echo -n "Restarting $DESC: "
-	start-stop-daemon -K -x "$DAEMON"
-	echo "$NAME."
+	$0 stop
+	$0 start
 	;;
   *)
 	N=/etc/init.d/$NAME
-	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	echo "Usage: $N {start|stop|restart}" >&2
 	exit 1
 	;;
 esac

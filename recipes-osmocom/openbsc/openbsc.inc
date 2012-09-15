@@ -9,7 +9,7 @@ RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc_mgcp.init \
 	   file://osmo-bsc.init"
-INC_PR = "r12.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r13.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc "
