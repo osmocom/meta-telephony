@@ -37,7 +37,7 @@ case `machine_id` in
                 ;;
 	"sysmocom_sysmobts_v2")
 		GSMD_OPTS="-v wavecom"
-		GSM_DEV="/dev/ttyS0"
+		GSM_DEV="/dev/ttyS2"
 		;;
 	*)
 		# Unknown board
