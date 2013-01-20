@@ -8,6 +8,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
 
 # Fork with wavecom support
 SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
+	   file://cell-log.patch \
            file://gsmd \
            file://cell-log \
            file://gsmd-respawn.sh \
@@ -15,7 +16,7 @@ SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
 SRCREV = "28e25ae42da7d65face9ad2472075f7c4fc87e92"
 S = "${WORKDIR}/git"
 
-PR = "r11.4"
+PR = "r11.5"
 
 inherit autotools pkgconfig update-rc.d
 
