@@ -8,8 +8,9 @@ RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
 SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc_mgcp.init \
-	   file://osmo-bsc.init"
-INC_PR = "r13.${META_TELEPHONY_OSMO_INC}"
+	   file://osmo-bsc.init \
+	   file://osmo-sgsn.init"
+INC_PR = "r14.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc "
@@ -28,9 +29,11 @@ do_install_append() {
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/osmo-bsc.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
+	install -m 0660 ${S}/doc/examples/osmo-sgsn/osmo-sgsn.cfg ${D}${sysconfdir}/osmocom/osmo-sgsn.cfg
 	install -m 0775 ${WORKDIR}/osmo-nitb.init ${D}${sysconfdir}/init.d/osmo-nitb
 	install -m 0775 ${WORKDIR}/osmo-bsc_mgcp.init ${D}${sysconfdir}/init.d/osmo-bsc-mgcp
 	install -m 0775 ${WORKDIR}/osmo-bsc.init ${D}${sysconfdir}/init.d/osmo-bsc
+	install -m 0775 ${WORKDIR}/osmo-sgsn.init ${D}${sysconfdir}/init.d/osmo-sgsn
 
 	install -d ${D}/var/lib/osmocom
 }
@@ -61,7 +64,13 @@ FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		${sysconfdir}/init.d/osmo-nitb \
 		${sysconfdir}/osmocom/osmo-nitb.cfg"
 
-FILES_osmo-sgsn = " ${bindir}/osmo-sgsn "
+CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
+INITSCRIPT_NAME_osmo-sgsn = "osmo-sgsn"
+INITSCRIPT_PARAMS_osmo-sgsn = "defaults 30 30"
+FILES_osmo-sgsn = " ${bindir}/osmo-sgsn \
+		${sysconfdir}/init.d/osmo-sgsn \
+		${sysconfdir}/osmocom/osmo-sgsn.cfg"
+
 FILES_ipaccess-utils = " ${bindir}/ipaccess-find ${bindir}/ipaccess-config ${bindir}/ipaccess-proxy "
 FILES_osmo-bsc-nat = " ${bindir}/osmo-bsc_nat "
 FILES_osmo-gbproxy = " ${bindir}/osmo-gbproxy "
