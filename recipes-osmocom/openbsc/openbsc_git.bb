@@ -3,7 +3,7 @@ require ${PN}.inc
 PV = "0.12.0+gitr${SRCPV}"
 PR = "${INC_PR}.2"
 
-SRCREV = "ce1d742f27b54b5a05d4cd351641f4da1d2e9524"
+SRCREV = "8b29180cad875b396288a22fb252e158fa2a060a"
 SRC_URI += "git://git.osmocom.org/openbsc.git;protocol=git"
 
 S = "${WORKDIR}/git/openbsc"
