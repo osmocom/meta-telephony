@@ -1,5 +1,5 @@
 DESCRITOPN = "OpenBSC a Free Software GSM BaseStationController"
-DEPENDS = "libdbi libosmocore libosmo-sccp libosmo-abis openggsn"
+DEPENDS = "libdbi libosmocore libosmo-sccp libosmo-abis openggsn libsmpp34"
 HOMEPAGE = "http://openbsc.osmocom.org/"
 LICENSE = "AGPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
@@ -10,10 +10,10 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc_mgcp.init \
 	   file://osmo-bsc.init \
 	   file://osmo-sgsn.init"
-INC_PR = "r14.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r15.${META_TELEPHONY_OSMO_INC}"
 
 
-EXTRA_OECONF += " --enable-nat --enable-osmo-bsc "
+EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp"
 
 inherit autotools update-rc.d
 
