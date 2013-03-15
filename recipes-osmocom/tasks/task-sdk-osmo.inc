@@ -4,6 +4,8 @@ SDK-OSMO = " \
     libosmo-abis-dev \
     libgtp-dev \
     libdbi-dev \
+    libsmpp34-dev \
+    gpsd-dev \
     "
 
 SDK-EXTRAS ?= ""
