@@ -7,6 +7,7 @@
 # processname: gsmd
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
+PIDFILE=/var/run/gsmd.pid
 
 [ -f /etc/default/rcS ] && . /etc/default/rcS
 [ -f /etc/default/gsmd ] && . /etc/default/gsmd
@@ -19,7 +20,8 @@ case "$1" in
         [ -n "$GSM_RES" ] && ( echo "0" >$GSM_RES; sleep 2 )
 
         echo -n "Starting GSM daemon: "
-        start-stop-daemon -S -b -x /etc/gsmd-respawn.sh /usr/sbin/gsmd -- gsmd -p $GSM_DEV $GSMD_OPTS -l syslog
+        start-stop-daemon -S -p $PIDFILE -b \
+		-x /etc/gsmd-respawn.sh /usr/sbin/gsmd -- gsmd -p $GSM_DEV $GSMD_OPTS -l syslog
 
         if [ $? = 0 ]; then
             echo "gsmd."
@@ -31,7 +33,7 @@ case "$1" in
         [ -n "$GSM_POW" ] && echo "0" >$GSM_POW
 
         echo -n "Stopping GSM daemon: "
-        start-stop-daemon -K -x /usr/sbin/gsmd
+        start-stop-daemon -K -x bash -p $PIDFILE
         echo "gsmd."
         ;;
     restart|force-reload)

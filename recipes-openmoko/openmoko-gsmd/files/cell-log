@@ -7,11 +7,13 @@
 # processname: cell_log
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
+PIDFILE=/var/run/cell_log.pid
 
 case "$1" in
     start)
         echo -n "Starting cell-log: "
-        start-stop-daemon -S -b -x /etc/gsmd-respawn.sh /usr/bin/cell_log
+        start-stop-daemon -S -b -p $PIDFILE \
+		-x /etc/gsmd-respawn.sh /usr/bin/cell_log
 
         if [ $? = 0 ]; then
             echo "cell-log"
@@ -21,7 +23,7 @@ case "$1" in
         ;;
     stop)
         echo -n "Stopping GSM daemon: "
-        start-stop-daemon -K -x /usr/bin/cell_log
+        start-stop-daemon -K -x bash -p $PIDFILE
         echo "cell-log."
         ;;
     restart|force-reload)
