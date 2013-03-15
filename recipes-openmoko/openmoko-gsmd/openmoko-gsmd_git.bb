@@ -13,7 +13,7 @@ SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
            file://cell-log \
            file://gsmd-respawn.sh \
            file://default"
-SRCREV = "cf9ad6fe4dda247c47d0df10ef95fcaa45d87558"
+SRCREV = "da770f8f34662a298647a75698a718705047d3dc"
 S = "${WORKDIR}/git"
 
 PR = "r12.0"
