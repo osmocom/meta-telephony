@@ -5,7 +5,7 @@ PIDFILE="/var/run/$NAME.pid"
 PID=$$
 echo "$PID" > $PIDFILE
 
-trap "{ rm -f $PIDFILE ; killall -9 $NAME; }" EXIT
+trap "{ rm -f $PIDFILE ; kill 0; }" EXIT
 
 while true;
 do
