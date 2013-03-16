@@ -21,7 +21,7 @@ case "$1" in
 
         echo -n "Starting GSM daemon: "
         start-stop-daemon -S -p $PIDFILE -b \
-		-x /etc/gsmd-respawn.sh /usr/sbin/gsmd -- gsmd -p $GSM_DEV $GSMD_OPTS -l syslog
+		-x /usr/bin/osmo-service-respawn.sh /usr/sbin/gsmd -- gsmd -p $GSM_DEV $GSMD_OPTS -l syslog
 
         if [ $? = 0 ]; then
             echo "gsmd."

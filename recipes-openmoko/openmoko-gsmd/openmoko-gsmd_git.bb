@@ -11,12 +11,11 @@ SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
 	   file://cell-log.patch \
            file://gsmd \
            file://cell-log \
-           file://gsmd-respawn.sh \
            file://default"
 SRCREV = "da770f8f34662a298647a75698a718705047d3dc"
 S = "${WORKDIR}/git"
 
-PR = "r13.0"
+PR = "r14.0"
 
 inherit autotools pkgconfig update-rc.d
 
@@ -37,7 +36,6 @@ do_install_append() {
 	install -m 0755 ${WORKDIR}/cell-log ${D}/${sysconfdir}/init.d/
 	install -d ${D}/${sysconfdir}/default
 	install ${WORKDIR}/default ${D}/${sysconfdir}/default/gsmd
-	install -m 0755 ${WORKDIR}/gsmd-respawn.sh ${D}/${sysconfdir}/
 }
 
 PACKAGES =+ "\
@@ -69,8 +67,8 @@ RDEPENDS_${PN}-plugins = "\
   ${PN}-plugin-vendor-wavecom \
 "
 
-RDEPENDS_${PN} += "update-rc.d"
-RDEPENDS_${PN}-tools-cell-log += "update-rc.d ${PN}"
+RDEPENDS_${PN} += "update-rc.d osmo-service-respawn"
+RDEPENDS_${PN}-tools-cell-log += "update-rc.d ${PN} osmo-service-respawn"
 
 FILES_${PN}-dbg += "${libdir}/gsmd/.debug/*"
 FILES_${PN}-tools-cell-log = "${bindir}/cell_log ${sysconfdir}/cell-log"

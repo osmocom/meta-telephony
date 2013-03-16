@@ -13,7 +13,7 @@ case "$1" in
     start)
         echo -n "Starting cell-log: "
         start-stop-daemon -S -b -p $PIDFILE \
-		-x /etc/gsmd-respawn.sh /usr/bin/cell_log
+		-x /usr/bin/osmo-service-respawn.sh /usr/bin/cell_log
 
         if [ $? = 0 ]; then
             echo "cell-log"
