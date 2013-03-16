@@ -1,4 +1,4 @@
-DESCRITOPN = "OpenBSC a Free Software GSM BaseStationController"
+DESCRIPTION = "OpenBSC a Free Software GSM BaseStationController"
 DEPENDS = "libdbi libosmocore libosmo-sccp libosmo-abis openggsn libsmpp34"
 HOMEPAGE = "http://openbsc.osmocom.org/"
 LICENSE = "AGPLv3+"
