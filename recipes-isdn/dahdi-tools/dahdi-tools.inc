@@ -1,6 +1,6 @@
 DESCRITOPN = "Utilities for the DAHDI Asterisk Linux kernel drivers"
 DEPENDS = "dahdi-linux libnewt libpcap"
-RDEPENDS += "perl perl-module-strict perl-module-file-basename perl-module-config \
+RDEPENDS_${PN} += "perl perl-module-strict perl-module-file-basename perl-module-config \
              perl-module-warnings perl-module-getopt perl-module-getopt-std \
              perl-module-file perl-module-file-glob perl-module-xsloader \
              perl-module-dynaloader perl-module-carp perl-module-errno"
@@ -11,7 +11,7 @@ LICENSE = "GPLv2"
 SRC_URI = "http://downloads.asterisk.org/pub/telephony/dahdi-tools/releases/dahdi-tools-${PV}.tar.gz \
            file://perl_install.patch "
 
-INC_PR="r18"
+INC_PR="r19"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ea5bed2f60d357618ca161ad539f7c0a \
 		    file://LICENSE.LGPL;md5=fb504b67c50331fc78734fed90fb0e09"
