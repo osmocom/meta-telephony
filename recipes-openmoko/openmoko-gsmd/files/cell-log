@@ -22,7 +22,7 @@ case "$1" in
         fi
         ;;
     stop)
-        echo -n "Stopping GSM daemon: "
+        echo -n "Stopping cell-log daemon: "
         start-stop-daemon -K -x bash -p $PIDFILE
         echo "cell-log."
         ;;
