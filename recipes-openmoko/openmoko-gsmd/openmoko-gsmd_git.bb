@@ -11,10 +11,10 @@ SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
            file://gsmd \
            file://cell-log \
            file://default"
-SRCREV = "de8f1175dcb07f65dde26b42a3f12f9993746c84"
+SRCREV = "8781da796c22dc883985bb80d1e1d11fbdaa2135"
 S = "${WORKDIR}/git"
 
-PR = "r17.0"
+PR = "r18.0"
 
 inherit autotools pkgconfig update-rc.d
 
