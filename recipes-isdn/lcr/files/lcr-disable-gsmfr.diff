@@ -1,0 +1,36 @@
+diff --git a/Makefile.am b/Makefile.am
+index b1fab38..053f26e 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -61,15 +61,8 @@ GSM_LIB =
+ 
+ if ENABLE_GSM
+ 
+-#if ENABLE_GSMFR
+-
+ GSM_INCLUDE += -DWITH_GSMFR
+-
+-GSM_LIB += libgsmfr/lib/libgsm.a
+-
+-SUBDIRS += libgsmfr
+-
+-#endif
++GSM_LIB += -lgsm
+ 
+ if ENABLE_GSMHR
+ 
+@@ -205,14 +198,6 @@ TONEDIRS = tones_american tones_efi tones_german vbox_english vbox_german
+ EXTRA_DIST = default debian $(TONEDIRS)
+ 
+ install-data-hook:
+-	@fns='strcpy strncpy strcat strncat sprintf snprintf' ; \
+-	files=$$( find $(srcdir) -type f -name "*.c*" \
+-	  | $(GREP) -v -e chan_lcr.c -e callerid.c ) ; \
+-	test -z "$$files" || { for fn in $$fns ; do \
+-	  $(GREP) -n $$fn $$files ; if test $$? = 0 ; then \
+-	    ( echo "dont use $$fn, use makro instead." ; exit -1 ) ; \
+-	  fi ; \
+-	done ; }
+ 	mkdir -p '$(DESTDIR)$(CONFIGdir)'
+ 	mkdir -p '$(DESTDIR)$(SHAREdir)'
+ 	mkdir -p '$(DESTDIR)$(LOGdir)'
