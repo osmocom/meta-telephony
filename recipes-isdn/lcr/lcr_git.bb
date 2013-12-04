@@ -5,11 +5,12 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
 PV = "1.13+gitr${SRCPV}"
-PR = "r1"
+PR = "r2"
 
 SRCREV = "f3b94bf3a9599359805eaf20f3b036272c7af522"
 SRC_URI = "git://git.misdn.eu/lcr.git \
 	   file://lcr-disable-gsmfr.diff \
+	   file://lcr-no_amr.diff \
            file://lcr.init             "
 S = "${WORKDIR}/git"
 

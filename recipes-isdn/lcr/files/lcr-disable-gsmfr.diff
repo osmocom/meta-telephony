@@ -1,8 +1,16 @@
 diff --git a/Makefile.am b/Makefile.am
-index b1fab38..053f26e 100644
+index b1fab38..df19a20 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -61,15 +61,8 @@ GSM_LIB =
+@@ -53,23 +53,14 @@ MISDN_LIB = -lmisdn
+ 
+ endif
+ 
+-SUBDIRS =
+-
+ GSM_INCLUDE =
+ GSM_SOURCE =
+ GSM_LIB =
  
  if ENABLE_GSM
  
@@ -19,7 +27,7 @@ index b1fab38..053f26e 100644
  
  if ENABLE_GSMHR
  
-@@ -205,14 +198,6 @@ TONEDIRS = tones_american tones_efi tones_german vbox_english vbox_german
+@@ -205,14 +196,6 @@ TONEDIRS = tones_american tones_efi tones_german vbox_english vbox_german
  EXTRA_DIST = default debian $(TONEDIRS)
  
  install-data-hook:
