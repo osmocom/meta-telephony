@@ -1,6 +1,6 @@
 SDK-OSMO = " \
     libosmocore-dev \
-    libosmo-sccp-dev \
+    libosmo-sccp-staticdev \
     libosmo-abis-dev \
     libgtp-dev \
     libdbi-dev \
