@@ -11,7 +11,7 @@
 DAEMON=/usr/bin/osmo-bsc
 NAME=osmo-bsc
 DESC="Osmocom GSM Base Station Controller"
-NORMAL_ARGS="-D -c /etc/osmocom/osmo-bsc.cfg"
+NORMAL_ARGS="-D -c /etc/osmocom/osmo-bsc.cfg -r /var/run/openbsc.ctl"
 
 OSMOBTS_EXTRA_ARGS=""
 NO_START=1
