@@ -10,7 +10,8 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc_mgcp.init \
 	   file://osmo-bsc.init \
 	   file://osmo-sgsn.init"
-INC_PR = "r15.${META_TELEPHONY_OSMO_INC}"
+
+INC_PR = "r16.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp"
@@ -24,16 +25,24 @@ do_configure_prepend() {
 
 do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
-	install -d ${D}${sysconfdir}/init.d
-	install -d ${D}${sysconfdir}/rc5.d
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/osmo-bsc.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
 	install -m 0660 ${S}/doc/examples/osmo-sgsn/osmo-sgsn.cfg ${D}${sysconfdir}/osmocom/osmo-sgsn.cfg
+
+	# Install sysv-init files
+	install -d ${D}${sysconfdir}/init.d
+	install -d ${D}${sysconfdir}/rc5.d
 	install -m 0775 ${WORKDIR}/osmo-nitb.init ${D}${sysconfdir}/init.d/osmo-nitb
 	install -m 0775 ${WORKDIR}/osmo-bsc_mgcp.init ${D}${sysconfdir}/init.d/osmo-bsc-mgcp
 	install -m 0775 ${WORKDIR}/osmo-bsc.init ${D}${sysconfdir}/init.d/osmo-bsc
 	install -m 0775 ${WORKDIR}/osmo-sgsn.init ${D}${sysconfdir}/init.d/osmo-sgsn
+
+	# Install systemd files and enable on sysinit
+	install -d ${D}${systemd_unitdir}/system
+	for i in `ls ${S}/contrib/systemd`; do
+		install -m 0644 ${S}/contrib/systemd/$i ${D}${systemd_unitdir}/system/
+	done
 
 	install -d ${D}/var/lib/osmocom
 }
@@ -47,14 +56,18 @@ INITSCRIPT_NAME_osmo-bsc = "osmo-bsc"
 INITSCRIPT_PARAMS_osmo-bsc = "defaults 30 30"
 FILES_osmo-bsc = " ${bindir}/osmo-bsc \
 		${sysconfdir}/osmocom/osmo-bsc.cfg \
-		${sysconfdir}/init.d/osmo-bsc"
+		${sysconfdir}/init.d/osmo-bsc \
+		${systemd_unitdir}/system/osmo-bsc.service \
+		"
 
 CONFFILES_osmo-bsc-mgcp = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
 INITSCRIPT_NAME_osmo-bsc-mgcp = "osmo-bsc-mgcp"
 INITSCRIPT_PARAMS_osmo-bsc-mgcp = "defaults 30 30"
 FILES_osmo-bsc-mgcp = " ${bindir}/osmo-bsc_mgcp \
 		${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg \
-		${sysconfdir}/init.d/osmo-bsc-mgcp"
+		${sysconfdir}/init.d/osmo-bsc-mgcp \
+		${systemd_unitdir}/system/osmo-bsc-mgcp.service \
+		"
 
 CONFFILES_osmo-nitb = "${sysconfdir}/osmocom/osmo-nitb.cfg"
 INITSCRIPT_NAME_osmo-nitb = "osmo-nitb"
@@ -62,7 +75,9 @@ INITSCRIPT_PARAMS_osmo-nitb = "defaults 30 30"
 FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		/var/lib/osmocom \
 		${sysconfdir}/init.d/osmo-nitb \
-		${sysconfdir}/osmocom/osmo-nitb.cfg"
+		${sysconfdir}/osmocom/osmo-nitb.cfg \
+		${systemd_unitdir}/system/osmo-nitb.service \
+		"
 
 CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
 INITSCRIPT_NAME_osmo-sgsn = "osmo-sgsn"
