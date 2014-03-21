@@ -84,7 +84,9 @@ INITSCRIPT_NAME_osmo-sgsn = "osmo-sgsn"
 INITSCRIPT_PARAMS_osmo-sgsn = "defaults 30 30"
 FILES_osmo-sgsn = " ${bindir}/osmo-sgsn \
 		${sysconfdir}/init.d/osmo-sgsn \
-		${sysconfdir}/osmocom/osmo-sgsn.cfg"
+		${sysconfdir}/osmocom/osmo-sgsn.cfg \
+		${systemd_unitdir}/system/osmo-sgsn.service \
+		"
 
 FILES_ipaccess-utils = " ${bindir}/ipaccess-find ${bindir}/ipaccess-config ${bindir}/ipaccess-proxy "
 FILES_osmo-bsc-nat = " ${bindir}/osmo-bsc_nat "
