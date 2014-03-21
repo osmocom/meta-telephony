@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "0.91+gitr${SRCPV}"
 PR = "r12"
 
-SRCREV = "95848bafcef145d776d70a73f7bdc3fe37e85724"
-SRC_URI = "git://ggsn.git.sourceforge.net/gitroot/ggsn/ggsn \
+SRCREV = "4afb44a25ebe9d33886531c0a1c549d70da198bd"
+SRC_URI = "git://git.osmocom.org/openggsn                   \
            file://openggsn.init                             \
 	   file://libgtp-queue_depth_32.patch		    \
           "
@@ -18,7 +18,10 @@ inherit autotools update-rc.d
 
 do_install_append() {
 	install -d ${D}${sysconfdir}/init.d
+	install -d ${D}${systemd_unitdir}/system
+
 	install -m 0776 ${WORKDIR}/openggsn.init ${D}${sysconfdir}/init.d/openggsn
+	install -m 0644 ${S}/contrib/openggsn.service ${D}${systemd_unitdir}/system/
 }
 
 INITSCRIPT_PACKAGES = "openggsn"
@@ -32,3 +35,4 @@ FILES_libgtp-dev = "${includedir} ${libdir}/lib*${SOLIBSDEV} ${libdir}/*.la"
 FILES_libgtp-staticdev = "${libdir}/*.a"
 
 FILES_openggsn-sgsnemu = "${bindir}/sgsnemu"
+FILES_${PN} += "${systemd_unitdir}/system/*"
