@@ -1,0 +1,17 @@
+This is a backport of a fix from Holger Freyther to the
+libdbd sqlite3 driver.
+
+Index: libdbi-drivers-0.8.3-1/drivers/sqlite3/dbd_sqlite3.c
+===================================================================
+--- libdbi-drivers-0.8.3-1.orig/drivers/sqlite3/dbd_sqlite3.c
++++ libdbi-drivers-0.8.3-1/drivers/sqlite3/dbd_sqlite3.c
+@@ -502,7 +502,8 @@ size_t dbd_quote_binary(dbi_conn_t *conn
+   unsigned char *temp;
+   size_t len;
+ 
+-  if ((temp = malloc(from_length*2)) == NULL) {
++  /* allocate an extra byte for NULL and two for the quotes */
++  if ((temp = malloc(2*from_length+1+2)) == NULL) {
+     return 0;
+   }
+ 
