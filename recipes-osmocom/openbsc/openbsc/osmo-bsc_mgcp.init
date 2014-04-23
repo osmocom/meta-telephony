@@ -11,7 +11,7 @@
 DAEMON=/usr/bin/osmo-bsc_mgcp
 NAME=osmo-bsc_mgcp
 DESC="Osmocom GSM BSC MGCP proxy"
-NORMAL_ARGS="-D -c /etc/osmocom/bsc_mgcp.cfg"
+NORMAL_ARGS="-D -c /etc/osmocom/osmo-bsc-mgcp.cfg"
 
 OSMOBTS_EXTRA_ARGS=""
 NO_START=1

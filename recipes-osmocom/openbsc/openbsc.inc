@@ -11,7 +11,7 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc.init \
 	   file://osmo-sgsn.init"
 
-INC_PR = "r17.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r18.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp"
