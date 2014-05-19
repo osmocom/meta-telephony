@@ -4,13 +4,12 @@ HOMEPAGE = "http://isdn.eversberg.eu/"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
-PV = "1.13+gitr${SRCPV}"
+PV = "1.14+gitr${SRCPV}"
 PR = "r2"
 
-SRCREV = "f3b94bf3a9599359805eaf20f3b036272c7af522"
+SRCREV = "38fce218f8897d120aeba56e811ef7dada898c2c"
 SRC_URI = "git://git.misdn.eu/lcr.git \
 	   file://lcr-disable-gsmfr.diff \
-	   file://lcr-no_amr.diff \
            file://lcr.init             "
 S = "${WORKDIR}/git"
 
