@@ -1,0 +1,17 @@
+lcr uses MNCC_SOCK_VERSION 5, but this is binary compatible to
+what openbsc thinks is version 4.  The only difference is the added
+RTP related commands, which are optional.
+
+Index: openbsc/include/openbsc/mncc.h
+===================================================================
+--- openbsc.orig/include/openbsc/mncc.h
++++ openbsc/include/openbsc/mncc.h
+@@ -163,7 +163,7 @@ struct gsm_data_frame {
+ 	unsigned char	data[0];
+ };
+ 
+-#define MNCC_SOCK_VERSION	4
++#define MNCC_SOCK_VERSION	5
+ struct gsm_mncc_hello {
+ 	uint32_t	msg_type;
+ 	uint32_t	version;
