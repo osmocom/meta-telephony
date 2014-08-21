@@ -1,0 +1,61 @@
+From 0e167fc9740793cf4a3c82747919146073255486 Mon Sep 17 00:00:00 2001
+From: Daniel Willmann <dwillmann@sysmocom.de>
+Date: Wed, 20 Aug 2014 15:13:56 +0200
+Subject: [PATCH] systemd: Add Install section to service files
+
+That way the services can be enabled with
+> systemctl enable <service>
+---
+ contrib/systemd/osmo-bsc-mgcp.service | 3 +++
+ contrib/systemd/osmo-bsc.service      | 3 +++
+ contrib/systemd/osmo-nitb.service     | 3 +++
+ contrib/systemd/osmo-sgsn.service     | 3 +++
+ 4 files changed, 12 insertions(+)
+
+diff --git a/contrib/systemd/osmo-bsc-mgcp.service b/contrib/systemd/osmo-bsc-mgcp.service
+index 7fa2ec0..c040e60 100644
+--- a/contrib/systemd/osmo-bsc-mgcp.service
++++ b/contrib/systemd/osmo-bsc-mgcp.service
+@@ -6,3 +6,6 @@ Type=simple
+ Restart=always
+ ExecStart=/usr/bin/osmo-bsc_mgcp -s -c /etc/osmocom/osmo-bsc-mgcp.cfg
+ RestartSec=2
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/contrib/systemd/osmo-bsc.service b/contrib/systemd/osmo-bsc.service
+index deaf123..eb6cacb 100644
+--- a/contrib/systemd/osmo-bsc.service
++++ b/contrib/systemd/osmo-bsc.service
+@@ -7,3 +7,6 @@ Type=simple
+ Restart=always
+ ExecStart=/usr/bin/osmo-bsc -c /etc/osmocom/osmo-bsc.cfg -s
+ RestartSec=2
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/contrib/systemd/osmo-nitb.service b/contrib/systemd/osmo-nitb.service
+index a9d5d8c..377497e 100644
+--- a/contrib/systemd/osmo-nitb.service
++++ b/contrib/systemd/osmo-nitb.service
+@@ -6,3 +6,6 @@ Type=simple
+ Restart=always
+ ExecStart=/usr/bin/osmo-nitb -s -C -c /etc/osmocom/osmo-nitb.cfg -l /var/lib/osmocom/hlr.sqlite3
+ RestartSec=2
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/contrib/systemd/osmo-sgsn.service b/contrib/systemd/osmo-sgsn.service
+index afd0f40..674d786 100644
+--- a/contrib/systemd/osmo-sgsn.service
++++ b/contrib/systemd/osmo-sgsn.service
+@@ -6,3 +6,6 @@ Type=simple
+ Restart=always
+ ExecStart=/usr/bin/osmo-sgsn -c /etc/osmocom/osmo-sgsn.cfg
+ RestartSec=2
++
++[Install]
++WantedBy=multi-user.target
+-- 
+2.1.0.rc1
+
