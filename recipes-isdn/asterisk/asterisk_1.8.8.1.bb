@@ -84,4 +84,6 @@ do_install_append() {
 
 	install -m 0775 ${WORKDIR}/asterisk.init   ${D}${sysconfdir}/init.d/asterisk
 	install -m 0660 ${WORKDIR}/modules.conf    ${D}${sysconfdir}/asterisk/
+
+	rm -rf ${D}/var/run
 }
