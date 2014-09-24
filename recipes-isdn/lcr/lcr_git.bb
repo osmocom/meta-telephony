@@ -5,7 +5,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=de9327a12ae1ccc94dade892a360f996"
 
 PV = "1.14+gitr${SRCPV}"
-PR = "r2"
+PR = "r3"
 
 SRCREV = "38fce218f8897d120aeba56e811ef7dada898c2c"
 SRC_URI = "git://git.misdn.eu/lcr.git \
@@ -19,7 +19,7 @@ inherit autotools update-rc.d
 
 PACKAGES =+ "${PN}-tones-de ${PN}-vbox-de \
              ${PN}-tones-en ${PN}-vbox-en \
-	     ${PN}-asterisk"
+	     ${PN}-asterisk-dbg ${PN}-asterisk"
 
 CONFFILES_${PN} = "${sysconfdir}/lcr/options.conf"
 INITSCRIPT_PACKAGES = "${PN}"
@@ -31,6 +31,7 @@ FILES_${PN}-tones-en = "/usr/share/lcr/tones_american"
 FILES_${PN}-vbox-de = "/usr/share/lcr/vbox_german"
 FILES_${PN}-vbox-en = "/usr/share/lcr/vbox_english"
 FILES_${PN}-asterisk = "/usr/lib/asterisk/modules/chan_lcr.so"
+FILES_${PN}-asterisk-dbg = "/usr/lib/asterisk/modules/.debug/chan_lcr.so"
 
 
 do_install_append() {
