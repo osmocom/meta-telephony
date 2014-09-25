@@ -16,7 +16,7 @@ INC_PR = "r20.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
-inherit autotools update-rc.d
+inherit autotools update-rc.d pkgconfig
 
 # because "${WORKDIR}/git" is not a git repo, it can't figure out the version
 do_configure_prepend() {
