@@ -15,7 +15,7 @@ S = "${WORKDIR}/git"
 
 EXTRA_OECONF = "--with-gsm-bs --without-asterisk --without-misdn --with-sip"
 
-inherit autotools update-rc.d
+inherit autotools update-rc.d pkgconfig
 
 PACKAGES =+ "${PN}-tones-de ${PN}-vbox-de \
              ${PN}-tones-en ${PN}-vbox-en"
