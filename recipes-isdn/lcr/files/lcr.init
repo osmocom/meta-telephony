@@ -7,7 +7,7 @@ set -e
 case "$1" in
   start)
     /usr/sbin/lcr fork 
-    echo "Forked asterisk"
+    echo "Forked LCR"
     ;;
   stop)
     echo "Can not stop it"
