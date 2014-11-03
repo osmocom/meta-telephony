@@ -1,5 +1,5 @@
 require ortp.inc
-DEPENDS = "glib-2.0 "
+DEPENDS = "glib-2.0 openssl"
 PR = "${INC_PR}.1"
 
 SRC_URI += "file://0001-fix-unused-variables.patch;patch=1 \
