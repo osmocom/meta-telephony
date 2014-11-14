@@ -5,7 +5,12 @@ DEPENDS = "virtual/kernel"
 ALLOW_EMPTY_${PN} = "1"
 PR = "r2"
 
-RDEPENDS_task-osmocom = "\
+# For backwards compatibility after rename
+RPROVIDES_${PN} = "task-osmocom"
+RREPLACES_${PN} = "task-osmocom"
+RCONFLICTS_${PN} = "task-osmocom"
+
+RDEPENDS_${PN} = "\
     libosmocore \
     "
 

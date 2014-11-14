@@ -1,5 +1,4 @@
-#TOOLCHAIN_TARGET_OSMOTASK ?= "task-core-standalone-osmo-sdk-target task-core-standalone-osmo-sdk-target-dbg"
-TOOLCHAIN_TARGET_OSMOTASK ?= "task-core-standalone-osmo-sdk-target"
+TOOLCHAIN_TARGET_OSMOTASK ?= "packagegroup-core-standalone-osmo-sdk-target"
 TOOLCHAIN_TARGET_TASK = "${TOOLCHAIN_TARGET_OSMOTASK}"
 TOOLCHAIN_OUTPUT_BASENAME = "${SDK_NAME}-toolchain-osmo-${DISTRO_VERSION}"
 TOOLCHAIN_OUTPUTNAME = "${TOOLCHAIN_OUTPUT_BASENAME}-${DATETIME}"

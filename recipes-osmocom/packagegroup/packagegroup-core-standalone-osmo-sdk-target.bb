@@ -13,11 +13,11 @@ ALLOW_EMPTY_${PN} = "1"
 # will need to skip this test.
 INSANE_SKIP_${PN} += "dev-deps"
 
-require task-sdk-osmo.inc
+require packagegroup-sdk-osmo.inc
 
 PACKAGES = "${PN} ${PN}-dbg"
 
 RDEPENDS_${PN} = "\
-    task-core-standalone-sdk-target \
+    packagegroup-core-standalone-sdk-target \
     ${SDK-OSMO} \
     ${SDK-EXTRAS}"
