@@ -11,7 +11,7 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc.init \
 	   file://osmo-sgsn.init"
 
-INC_PR = "r20.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r21.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
@@ -50,6 +50,9 @@ do_install_append() {
 PACKAGES =+ "osmo-bsc osmo-nitb osmo-gbproxy osmo-gbproxy-dbg osmo-sgsn ipaccess-utils osmo-bsc-mgcp osmo-bsc-nat"
 
 INITSCRIPT_PACKAGES = "osmo-bsc osmo-bsc-mgcp osmo-nitb osmo-sgsn"
+
+# Do not start any of the services by default
+SYSTEMD_AUTO_ENABLE = "disable"
 
 CONFFILES_osmo-bsc = "${sysconfdir}/osmocom/osmo-bsc.cfg"
 INITSCRIPT_NAME_osmo-bsc = "osmo-bsc"
