@@ -7,5 +7,6 @@ PV = "0.7.0+gitr${SRCPV}"
 PR = "r2"
 
 PACKAGES =+ "libosmoctrl"
-
 FILES_libosmoctrl = "${libdir}/libosmoctrl${SOLIBS}"
+
+EXTRA_OECONF += "--disable-pcsc"
