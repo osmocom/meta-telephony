@@ -16,7 +16,7 @@ DEPENDS = "libosmocore"
 PACKAGES =+ " libgtp libgtp-dev libgtp-staticdev openggsn-sgsnemu"
 RDEPENDS_${PN} += "kernel-module-tun"
 
-inherit autotools update-rc.d
+inherit autotools update-rc.d pkgconfig
 
 do_install_append() {
 	install -d ${D}${sysconfdir}/init.d
