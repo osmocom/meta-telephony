@@ -4,12 +4,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "0.91+gitr${SRCPV}"
 PR = "r14"
 
-SRCREV = "c190896437b332d3fa2093b3f489810b48e3c90c"
+SRCREV = "b07d07072e70ac4f920be9dfdf45615193b4ec2d"
 SRC_URI = "git://git.osmocom.org/openggsn                   \
            file://openggsn.init                             \
 	   file://libgtp-queue_depth_32.patch		    \
           "
 S = "${WORKDIR}/git"
+
+DEPENDS = "libosmocore"
 
 PACKAGES =+ " libgtp libgtp-dev libgtp-staticdev openggsn-sgsnemu"
 RDEPENDS_${PN} += "kernel-module-tun"

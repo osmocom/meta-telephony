@@ -1,9 +1,10 @@
 require ${PN}.inc
 
 PV = "0.14.0+gitr${SRCPV}"
+PRINC = "0"
 PR = "${INC_PR}.6"
 
-SRCREV = "66105fd3dc043e0f8011e1fa47864611936dd6aa"
+SRCREV = "57ee78078905c7499bd4e6857f8981d22badfcac"
 SRC_URI += "git://git.osmocom.org/openbsc.git;protocol=git \
     file://upgrade-mncc-version.patch"
 

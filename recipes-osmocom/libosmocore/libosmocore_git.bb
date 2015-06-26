@@ -1,9 +1,9 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "f8699ca51eeb4f3d34336501abcaf071b4a95a47"
+SRCREV = "c1cb75eff5b060da9e6d43521e4913a8bf4e74fc"
 SRC_URI = "git://git.osmocom.org/libosmocore.git;protocol=git"
-PV = "0.8.0+gitr${SRCPV}"
+PV = "0.8.1+gitr${SRCPV}"
 PR = "r2"
 
 PACKAGES =+ "libosmoctrl"
