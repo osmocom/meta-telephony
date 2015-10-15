@@ -4,11 +4,12 @@ LICENSE = "LGPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=55ca817ccb7d5b5b66355690e9abc605"
 
 SRC_URI = "\
-    git://git.misdn.eu/mISDNuser.git \
-    file://misdn-ph-size.diff \
+    git://git.misdn.eu/mISDNuser.git;branch=socket \
+    file://0001-mbuffer-data-size.patch \
 "
+# Release v2.0.19
+SRCREV = "3638cf36df506b96015e1f37ce3bb36ec94a01fb"
 
-SRCREV = "fd246f6bbbf2f4692f507018bcd1a526fab16499"
 S = "${WORKDIR}/git"
 
 inherit autotools
