@@ -1,0 +1,41 @@
+Upstream-Status: Inappropriate [configuration]
+
+Subject: [PATCH 4/5] Add includes
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ inc/toast.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/inc/toast.h b/inc/toast.h
+index 911769d..3e710d0 100644
+--- a/inc/toast.h
++++ b/inc/toast.h
+@@ -16,10 +16,11 @@
+ 
+ #include <stdio.h>
+ #include <ctype.h>
++#include <pthread.h>
+ #include <signal.h>
+ 
+ #include <errno.h>
+-#ifndef	HAS_ERRNO_DECL
++#ifndef	errno
+ 	 extern int	errno;
+ #endif
+ 
+@@ -37,6 +38,10 @@
+ # endif
+ #endif
+ 
++#ifdef  HAS_STDIO_H
++# include <stdio.h>
++#endif
++
+ #include "gsm.h"
+ 
+ #ifndef	S_ISREG
+-- 
+2.1.4
+

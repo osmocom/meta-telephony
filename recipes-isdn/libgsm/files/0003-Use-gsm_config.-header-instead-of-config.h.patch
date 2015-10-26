@@ -1,7 +1,27 @@
-diff -urNad libgsm-1.0.10~/Makefile libgsm-1.0.10/Makefile
---- libgsm-1.0.10~/Makefile	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/Makefile	2007-11-01 15:48:02.000000000 +0100
-@@ -151,7 +151,7 @@
+Upstream-Status: Inappropriate [configuration]
+
+Subject: [PATCH 3/5] Use gsm_config. header instead of config.h
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ Makefile          |  2 +-
+ inc/config.h      | 37 -------------------------------------
+ inc/gsm_config.h  | 37 +++++++++++++++++++++++++++++++++++++
+ inc/toast.h       |  2 +-
+ src/code.c        |  2 +-
+ src/gsm_create.c  |  2 +-
+ src/gsm_destroy.c |  2 +-
+ tls/taste.c       |  2 +-
+ 8 files changed, 43 insertions(+), 43 deletions(-)
+ delete mode 100644 inc/config.h
+ create mode 100644 inc/gsm_config.h
+
+diff --git a/Makefile b/Makefile
+index 410d3f6..c8c5b58 100644
+--- a/Makefile
++++ b/Makefile
+@@ -152,7 +152,7 @@ GSM_HEADERS =	$(INC)/gsm.h
  
  HEADERS	=	$(INC)/proto.h		\
  		$(INC)/unproto.h	\
@@ -10,9 +30,11 @@ diff -urNad libgsm-1.0.10~/Makefile libgsm-1.0.10/Makefile
  		$(INC)/private.h	\
  		$(INC)/gsm.h		\
  		$(INC)/toast.h		\
-diff -urNad libgsm-1.0.10~/inc/config.h libgsm-1.0.10/inc/config.h
---- libgsm-1.0.10~/inc/config.h	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/inc/config.h	1970-01-01 01:00:00.000000000 +0100
+diff --git a/inc/config.h b/inc/config.h
+deleted file mode 100644
+index dfb1ead..0000000
+--- a/inc/config.h
++++ /dev/null
 @@ -1,37 +0,0 @@
 -/*
 - * Copyright 1992 by Jutta Degener and Carsten Bormann, Technische
@@ -51,9 +73,11 @@ diff -urNad libgsm-1.0.10~/inc/config.h libgsm-1.0.10/inc/config.h
 -/*efine	HAS_UTIMEUSEC   1		/* microseconds in utimbuf?	*/
 -
 -#endif	/* CONFIG_H */
-diff -urNad libgsm-1.0.10~/inc/gsm_config.h libgsm-1.0.10/inc/gsm_config.h
---- libgsm-1.0.10~/inc/gsm_config.h	1970-01-01 01:00:00.000000000 +0100
-+++ libgsm-1.0.10/inc/gsm_config.h	2007-11-01 15:46:19.000000000 +0100
+diff --git a/inc/gsm_config.h b/inc/gsm_config.h
+new file mode 100644
+index 0000000..28cee6d
+--- /dev/null
++++ b/inc/gsm_config.h
 @@ -0,0 +1,37 @@
 +/*
 + * Copyright 1992 by Jutta Degener and Carsten Bormann, Technische
@@ -92,9 +116,10 @@ diff -urNad libgsm-1.0.10~/inc/gsm_config.h libgsm-1.0.10/inc/gsm_config.h
 +/*efine	HAS_UTIMEUSEC   1		-* microseconds in utimbuf?	*/
 +
 +#endif	/* CONFIG_H */
-diff -urNad libgsm-1.0.10~/inc/toast.h libgsm-1.0.10/inc/toast.h
---- libgsm-1.0.10~/inc/toast.h	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/inc/toast.h	2007-11-01 15:48:17.000000000 +0100
+diff --git a/inc/toast.h b/inc/toast.h
+index b42d9ae..911769d 100644
+--- a/inc/toast.h
++++ b/inc/toast.h
 @@ -9,7 +9,7 @@
  #ifndef	TOAST_H
  #define	TOAST_H				/* Guard against multiple includes */
@@ -104,9 +129,10 @@ diff -urNad libgsm-1.0.10~/inc/toast.h libgsm-1.0.10/inc/toast.h
  
  #include <sys/types.h>
  #include <sys/stat.h>
-diff -urNad libgsm-1.0.10~/src/code.c libgsm-1.0.10/src/code.c
---- libgsm-1.0.10~/src/code.c	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/src/code.c	2007-11-01 15:48:34.000000000 +0100
+diff --git a/src/code.c b/src/code.c
+index 402f614..5222727 100644
+--- a/src/code.c
++++ b/src/code.c
 @@ -6,7 +6,7 @@
  
  /* $Header: /tmp_amd/presto/export/kbs/jutta/src/gsm/RCS/code.c,v 1.3 1996/07/02 09:59:05 jutta Exp $ */
@@ -115,10 +141,11 @@ diff -urNad libgsm-1.0.10~/src/code.c libgsm-1.0.10/src/code.c
 +#include	"gsm_config.h"
  
  
- #ifdef	HAS_STDLIB_H
-diff -urNad libgsm-1.0.10~/src/gsm_create.c libgsm-1.0.10/src/gsm_create.c
---- libgsm-1.0.10~/src/gsm_create.c	1996-07-02 16:32:44.000000000 +0200
-+++ libgsm-1.0.10/src/gsm_create.c	2007-11-01 15:48:48.000000000 +0100
+ #ifdef	HAS_STRING_H
+diff --git a/src/gsm_create.c b/src/gsm_create.c
+index a0bf634..9cc2670 100644
+--- a/src/gsm_create.c
++++ b/src/gsm_create.c
 @@ -6,7 +6,7 @@
  
  static char const	ident[] = "$Header: /tmp_amd/presto/export/kbs/jutta/src/gsm/RCS/gsm_create.c,v 1.4 1996/07/02 09:59:05 jutta Exp $";
@@ -128,9 +155,10 @@ diff -urNad libgsm-1.0.10~/src/gsm_create.c libgsm-1.0.10/src/gsm_create.c
  
  #ifdef	HAS_STRING_H
  #include	<string.h>
-diff -urNad libgsm-1.0.10~/src/gsm_destroy.c libgsm-1.0.10/src/gsm_destroy.c
---- libgsm-1.0.10~/src/gsm_destroy.c	1996-07-02 16:32:39.000000000 +0200
-+++ libgsm-1.0.10/src/gsm_destroy.c	2007-11-01 15:48:57.000000000 +0100
+diff --git a/src/gsm_destroy.c b/src/gsm_destroy.c
+index 03c8659..274dc4c 100644
+--- a/src/gsm_destroy.c
++++ b/src/gsm_destroy.c
 @@ -7,7 +7,7 @@
  /* $Header: /tmp_amd/presto/export/kbs/jutta/src/gsm/RCS/gsm_destroy.c,v 1.3 1994/11/28 19:52:25 jutta Exp $ */
  
@@ -140,9 +168,10 @@ diff -urNad libgsm-1.0.10~/src/gsm_destroy.c libgsm-1.0.10/src/gsm_destroy.c
  #include "proto.h"
  
  #ifdef	HAS_STDLIB_H
-diff -urNad libgsm-1.0.10~/tls/taste.c libgsm-1.0.10/tls/taste.c
---- libgsm-1.0.10~/tls/taste.c	1996-07-02 16:33:05.000000000 +0200
-+++ libgsm-1.0.10/tls/taste.c	2007-11-01 15:49:54.000000000 +0100
+diff --git a/tls/taste.c b/tls/taste.c
+index 4bc84ad..56d1a93 100644
+--- a/tls/taste.c
++++ b/tls/taste.c
 @@ -10,7 +10,7 @@
  #include	<string.h>
  #include	<memory.h>
@@ -152,3 +181,6 @@ diff -urNad libgsm-1.0.10~/tls/taste.c libgsm-1.0.10/tls/taste.c
  
  #ifdef	HAS_STDLIB_H
  #	include	<stdlib.h>
+-- 
+2.1.4
+
