@@ -1,0 +1,42 @@
+Upstream-Status: Pending
+
+Fix error: "cc1: all warnings being treated as errors"
+
+Subject: [PATCH 3/3] Remove Werror from Makefile
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ Makefile     | 2 +-
+ xpp/Makefile | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 69741e6..1a5eefc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -27,7 +27,7 @@ CFLAGS+=-m64
+ endif
+ 
+ ifeq ($(DAHDI_DEVMODE),yes)
+-  CFLAGS+=-Werror -Wunused -Wundef $(DAHDI_DECLARATION_AFTER_STATEMENT) -Wmissing-format-attribute -Wformat-security #-Wformat=2
++  CFLAGS+= -Wunused -Wundef $(DAHDI_DECLARATION_AFTER_STATEMENT) -Wmissing-format-attribute -Wformat-security #-Wformat=2
+ endif
+ 
+ ROOT_PREFIX=
+diff --git a/xpp/Makefile b/xpp/Makefile
+index 8e8b6c9..001e476 100644
+--- a/xpp/Makefile
++++ b/xpp/Makefile
+@@ -146,7 +146,7 @@ ifneq	(,$(PERLLIBDIR))
+ 	done
+ endif
+ 
+-CFLAGS		+= -I. -Ixtalk -Wall -Werror
++CFLAGS		+= -I. -Ixtalk -Wall
+ 
+ astribank_hexload: $(ABHEXLOAD_OBJS)
+ astribank_hexload: LIBS+=$(EXTRA_LIBS) $(USB_LIB)
+-- 
+2.1.4
+

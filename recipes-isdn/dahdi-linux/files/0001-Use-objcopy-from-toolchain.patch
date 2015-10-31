@@ -1,0 +1,39 @@
+Upstream-Status: Inappropriate [configuration]
+
+Subject: [PATCH] Use objcopy from toolchain
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ drivers/dahdi/firmware/Makefile                | 4 ++--
+ drivers/dahdi/firmware/make_firmware_object.in | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/dahdi/firmware/Makefile b/drivers/dahdi/firmware/Makefile
+index fbd6582..1f9ce7f 100644
+--- a/drivers/dahdi/firmware/Makefile
++++ b/drivers/dahdi/firmware/Makefile
+@@ -158,8 +158,8 @@ hotplug-uninstall:
+ 	fi
+ 
+ make_firmware_object: make_firmware_object.in ../dahdi-base.o
+-	@export BFDNAME=`LANG=C objdump -f ../dahdi-base.o | grep -e "dahdi-base.o:" | sed "s/.*file format \(.*\)/\1/"`; \
+-	 export BFDARCH=`LANG=C objdump -f ../dahdi-base.o | grep -e "architecture:" | sed "s/.*ture: \(.*\),.*/\1/"`; \
++	@export BFDNAME=`LANG=C ${TARGET_SYS}-objdump -f ../dahdi-base.o | grep -e "dahdi-base.o:" | sed "s/.*file format \(.*\)/\1/"`; \
++	 export BFDARCH=`LANG=C ${TARGET_SYS}-objdump -f ../dahdi-base.o | grep -e "architecture:" | sed "s/.*ture: \(.*\),.*/\1/"`; \
+ 	 sed -e s/BFDNAME/$${BFDNAME}/ -e s/BFDARCH/$${BFDARCH}/ $< > $@
+ 	@chmod +x $@
+ 
+diff --git a/drivers/dahdi/firmware/make_firmware_object.in b/drivers/dahdi/firmware/make_firmware_object.in
+index 0effb32..6fe232a 100644
+--- a/drivers/dahdi/firmware/make_firmware_object.in
++++ b/drivers/dahdi/firmware/make_firmware_object.in
+@@ -5,4 +5,4 @@
+ #   1 - firmware file
+ #   2 - output file
+ 
+-objcopy -I binary ${1} -B BFDARCH -O BFDNAME ${2} --rename-section .data=.rodata,alloc,load,data,contents,readonly
++${TARGET_SYS}-objcopy -I binary ${1} -B BFDARCH -O BFDNAME ${2} --rename-section .data=.rodata,alloc,load,data,contents,readonly
+-- 
+2.1.4
+

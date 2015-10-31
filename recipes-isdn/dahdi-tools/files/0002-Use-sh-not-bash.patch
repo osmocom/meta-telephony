@@ -1,0 +1,23 @@
+Upstream-Status: Inappropriate [configuration]
+
+Subject: [PATCH 2/3] Use sh not bash
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ xpp/xpp_fxloader | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xpp/xpp_fxloader b/xpp/xpp_fxloader
+index 5135ebf..8598004 100644
+--- a/xpp/xpp_fxloader
++++ b/xpp/xpp_fxloader
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ # xpp_fxloader: load Xorcom Astribank (XPP) firmware
+ # $Id$
+-- 
+2.1.4
+

@@ -1,0 +1,26 @@
+Upstream-Status: Pending
+
+Subject: [PATCH] mbuffer data size
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ include/mISDN/mbuffer.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/mISDN/mbuffer.h b/include/mISDN/mbuffer.h
+index 96afa5e..fe1a1e9 100644
+--- a/include/mISDN/mbuffer.h
++++ b/include/mISDN/mbuffer.h
+@@ -72,7 +72,7 @@ struct mbuffer {
+ #endif
+ } __attribute__((__may_alias__));
+ 
+-#define	MBUFFER_DATA_SIZE	280
++#define	MBUFFER_DATA_SIZE	400
+ 
+ /*
+  * init mbuffer caching
+-- 
+2.1.4
+

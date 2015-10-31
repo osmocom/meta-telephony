@@ -1,0 +1,73 @@
+Upstream-Status: Pending
+
+Subject: [PATCH 2/2] Use pkgconfig to find libxml2
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ configure.ac            | 12 +-----------
+ menuselect/configure.ac | 11 +++--------
+ 2 files changed, 4 insertions(+), 19 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index c371d19..17f0d2d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -575,17 +575,6 @@ if test "x$JANSSON_LIB" == "x"; then
+   AC_MSG_ERROR([*** JSON support not found (this typically means the libjansson development package is missing)])
+ fi
+ 
+-AST_EXT_TOOL_CHECK([LIBXML2], [xml2-config], , ,
+-        [#include <libxml/tree.h>
+-        #include <libxml/parser.h>],
+-        [LIBXML_TEST_VERSION])
+-
+-if test "${PBX_LIBXML2}" != 1; then
+-	AC_MSG_NOTICE(*** The Asterisk menuselect tool requires the 'libxml2' development package.)
+-	AC_MSG_NOTICE(*** Please install the 'libxml2' development package.)
+-	exit 1
+-fi
+-
+ AST_EXT_LIB_CHECK([URIPARSER], [uriparser], [uriParseUriA], [uriparser/Uri.h])
+ 
+ # Another mandatory item (unless it's explicitly disabled)
+@@ -1280,6 +1269,7 @@ PKG_PROG_PKG_CONFIG()
+ 
+ 
+ # do the package library checks now
++AST_PKG_CONFIG_CHECK([LIBXML2], [libxml-2.0])
+ 
+ AST_EXT_LIB_CHECK([ALSA], [asound], [snd_spcm_init], [alsa/asoundlib.h], [-lm -ldl])
+ 
+diff --git a/menuselect/configure.ac b/menuselect/configure.ac
+index 5989f5c..675113b 100644
+--- a/menuselect/configure.ac
++++ b/menuselect/configure.ac
+@@ -125,14 +125,6 @@ AST_EXT_LIB_SETUP([LIBXML2], [LibXML2], [libxml2])
+ AST_EXT_LIB_CHECK([NEWT], [newt], [newtBell], [newt.h])
+ AST_EXT_LIB_CHECK([CURSES], [curses], [initscr], [curses.h])
+ AST_EXT_LIB_CHECK([NCURSES], [ncurses], [initscr], [curses.h])
+-AST_EXT_TOOL_CHECK([LIBXML2], [xml2-config], , ,
+-        [#include <libxml/tree.h>
+-        #include <libxml/parser.h>],
+-        [LIBXML_TEST_VERSION])
+-
+-if test "${PBX_LIBXML2}" != 1; then
+-  AC_MSG_ERROR([Could not find required 'Libxml2' development package])
+-fi
+ 
+ PBX_GTK2=0
+ AC_CHECK_TOOL(PKGCONFIG, pkg-config, No)
+@@ -146,6 +138,9 @@ AC_SUBST(PBX_GTK2)
+ AC_SUBST(GTK2_INCLUDE)
+ AC_SUBST(GTK2_LIB)
+ 
++PKG_PROG_PKG_CONFIG()
++AST_PKG_CONFIG_CHECK([LIBXML2], [libxml-2.0])
++
+ test "$silent"=yes && ac_sub_configure_args="${ac_sub_configure_args} --silent"
+ 
+ AC_CONFIG_FILES([makeopts])
+-- 
+2.1.4
+

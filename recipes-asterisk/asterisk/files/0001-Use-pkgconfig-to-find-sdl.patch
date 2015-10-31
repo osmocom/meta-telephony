@@ -1,0 +1,26 @@
+Upstream-Status: Pending
+
+Subject: [PATCH 1/2] Use pkgconfig to find sdl
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 971f9bf..c371d19 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2427,7 +2427,7 @@ AC_SUBST(PBX_IXJUSER)
+ AST_C_DEFINE_CHECK([MSG_NOSIGNAL], [MSG_NOSIGNAL], [sys/socket.h])
+ AST_C_DEFINE_CHECK([SO_NOSIGPIPE], [SO_NOSIGPIPE], [sys/socket.h])
+ 
+-AST_EXT_TOOL_CHECK([SDL], [sdl-config])
++AST_PKG_CONFIG_CHECK([SDL], [sdl])
+ AST_EXT_LIB_CHECK([SDL_IMAGE], [SDL_image], [IMG_Load], [SDL_image.h], [${SDL_LIB}], [${SDL_INCLUDE}])
+ AST_EXT_LIB_CHECK([FFMPEG], [avcodec], [sws_getContext], [ffmpeg/avcodec.h], [${PTHREAD_LIBS} -lz -lm], [${PTHREAD_CFLAGS}])
+ 
+-- 
+2.1.4
+

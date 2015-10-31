@@ -1,7 +1,19 @@
-diff -urNad libgsm-1.0.10~/src/debug.c libgsm-1.0.10/src/debug.c
---- libgsm-1.0.10~/src/debug.c	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/src/debug.c	2007-11-01 15:53:42.000000000 +0100
-@@ -49,7 +49,7 @@
+Upstream-Status: Inappropriate [configuration]
+
+Subject: [PATCH 5/5] Change compiler warnings
+Organization: O.S. Systems Software LTDA.
+
+Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+---
+ src/debug.c |  6 +++---
+ src/toast.c | 17 +++++++----------
+ 2 files changed, 10 insertions(+), 13 deletions(-)
+
+diff --git a/src/debug.c b/src/debug.c
+index 04c3907..a2a5136 100644
+--- a/src/debug.c
++++ b/src/debug.c
+@@ -49,7 +49,7 @@ void gsm_debug_longwords P4( (name, from, to, ptr),
  	fprintf( stderr, "%s [%d .. %d]: ", name, from, to );
  	while (from <= to) {
  
@@ -10,7 +22,7 @@ diff -urNad libgsm-1.0.10~/src/debug.c libgsm-1.0.10/src/debug.c
  		from++;
  		if (nprinted++ >= 7) {
  			nprinted = 0;
-@@ -63,14 +63,14 @@
+@@ -63,14 +63,14 @@ void gsm_debug_longword P2(  (name, value),
  	char		* name,
  	longword	  value	)
  {
@@ -27,10 +39,11 @@ diff -urNad libgsm-1.0.10~/src/debug.c libgsm-1.0.10/src/debug.c
  }
  
  #endif
-diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
---- libgsm-1.0.10~/src/toast.c	2007-11-01 15:37:52.000000000 +0100
-+++ libgsm-1.0.10/src/toast.c	2007-11-01 15:53:42.000000000 +0100
-@@ -251,8 +251,8 @@
+diff --git a/src/toast.c b/src/toast.c
+index 9823642..55606d7 100644
+--- a/src/toast.c
++++ b/src/toast.c
+@@ -251,8 +251,8 @@ static char * emalloc P1((len), size_t len)
  {
  	char * s;
  	if (!(s = malloc(len))) {
@@ -41,7 +54,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  		onintr();
  		exit(1);
  	}
-@@ -270,7 +270,7 @@
+@@ -270,7 +270,7 @@ static char* normalname P3((name, want, cut), char *name, char *want,char *cut)
  	maxlen = strlen(name) + 1 + strlen(want) + strlen(cut);
  	p = strcpy(emalloc(maxlen), name);
  
@@ -50,7 +63,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  	else if (*want && !suffix(p, want)) strcat(p, want);
  
  	return p;
-@@ -386,7 +386,7 @@
+@@ -386,7 +386,7 @@ static void update_times P0()
  		ut[0] = instat.st_atime;
  		ut[1] = instat.st_mtime;
  
@@ -59,7 +72,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  
  #endif	/* UTIMBUF */
  	}
-@@ -416,7 +416,7 @@
+@@ -416,7 +416,7 @@ static int okay_as_input P3((name,f,st), char* name, FILE* f, struct stat * st)
  	}
  	if (st->st_nlink > 1 && !f_cat && !f_precious) {
  		fprintf(stderr, 
@@ -68,7 +81,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  			progname,name,st->st_nlink - 1,"s" + (st->st_nlink<=2));
  		return 0;
  	}
-@@ -585,8 +585,8 @@
+@@ -585,8 +585,8 @@ static int process_decode P0()
  
  		if (cc != sizeof(s)) {
  			if (cc >= 0) fprintf(stderr,
@@ -79,7 +92,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  					"s" + (sizeof(s) - cc == 1),
  					inname ? inname : "stdin" );
  			gsm_destroy(r);
-@@ -624,8 +624,6 @@
+@@ -624,8 +624,6 @@ static int process_decode P0()
  
  static int process P1((name), char * name)
  {
@@ -88,7 +101,7 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  	out     = (FILE *)0;
  	in      = (FILE *)0;
  
-@@ -779,7 +777,6 @@
+@@ -779,7 +777,6 @@ int main P2((ac, av), int ac, char **av)
  	case 'h': help();    exit(0);
  
  	default: 
@@ -96,3 +109,6 @@ diff -urNad libgsm-1.0.10~/src/toast.c libgsm-1.0.10/src/toast.c
  		fprintf(stderr,
  	"Usage: %s [-fcpdhvuaslFC] [files...] (-h for help)\n",
  			progname);
+-- 
+2.1.4
+
