@@ -17,7 +17,10 @@ SRC_URI[sha256sum] = "e8b8d071f783edea82de510194dd272070ffbb7cdb2f5f6b020be5d15b
 
 S = "${WORKDIR}/asterisk-${PV}"
 
-inherit autotools-brokensep pkgconfig useradd update-rc.d
+inherit autotools pkgconfig useradd update-rc.d
+
+# dora doesn't have autotools-brokensep. Still needed for sysmocom
+B = "${S}"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM_${PN} = "--system -g asterisk --shell /bin/false asterisk"

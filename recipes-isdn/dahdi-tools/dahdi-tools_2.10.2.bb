@@ -21,7 +21,9 @@ SRC_URI[sha256sum] = "9e904815dedab231084c542d2d7d5dcc832ebec4b5d5d999a5d757df8b
 
 S = "${WORKDIR}/${PN}-${PV}"
 
-inherit autotools-brokensep pkgconfig perlnative cpan-base update-rc.d
+inherit autotools pkgconfig perlnative cpan-base update-rc.d
+# dora doesn't have autotools-brokensep. Still needed for sysmocom
+B = "${S}"
 
 export DAHDI_PERLLIBDIR="${PERLLIBDIRS}/${@get_perl_version(d)}"
 
