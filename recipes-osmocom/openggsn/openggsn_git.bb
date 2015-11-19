@@ -2,9 +2,9 @@ DESCRITOPN = "OpenGGSN a Free Software GGSN"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "0.91+gitr${SRCPV}"
-PR = "r14"
+PR = "r15"
 
-SRCREV = "b07d07072e70ac4f920be9dfdf45615193b4ec2d"
+SRCREV = "10abfba9495e7bac1e96463f8a55ce7d4da76a26"
 SRC_URI = "git://git.osmocom.org/openggsn                   \
            file://openggsn.init                             \
 	   file://libgtp-queue_depth_32.patch		    \
