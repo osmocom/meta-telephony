@@ -5,7 +5,10 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=03068f550c635f6520e0f0252da412fc"
 SECTION = "libs"
 DEPENDS = "glib-2.0 openssl"
 
-SRC_URI = "${SOURCEFORGE_MIRROR}/${PN}/${P}.tar.gz"
+SRC_URI = "\
+    ${SOURCEFORGE_MIRROR}/${PN}/${P}.tar.gz \
+    file://msg_parser.c.diff \
+    "
 
 inherit autotools pkgconfig
 
