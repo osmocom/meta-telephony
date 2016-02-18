@@ -24,7 +24,7 @@ PARALLEL_MAKE = ""
 
 do_compile(){
     unset LD
-    oe_runmake CCFLAGS="${CFLAGS}"
+    oe_runmake CCFLAGS="${CFLAGS}" CC="${CC}"
 }
 
 do_install(){
