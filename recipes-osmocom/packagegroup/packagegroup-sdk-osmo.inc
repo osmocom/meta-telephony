@@ -1,4 +1,5 @@
 SDK-OSMO = " \
+    libtalloc-dev \
     libosmocore-dev \
     libosmo-sccp-staticdev \
     libosmo-abis-dev \
