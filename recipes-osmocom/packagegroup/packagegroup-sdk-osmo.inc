@@ -1,4 +1,5 @@
 SDK-OSMO = " \
+    lksctp-tools-dev \
     libusb1-dev \
     libtalloc-dev \
     libosmocore-dev \
