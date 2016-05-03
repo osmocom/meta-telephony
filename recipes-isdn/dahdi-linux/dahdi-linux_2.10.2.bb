@@ -130,12 +130,13 @@ DAHDI_KERNEL_MODULE = "\
     kernel-module-dahdi-echocan-sec \
     kernel-module-xpd-echo \
     kernel-module-xpd-fxs \
+    kernel-module-dahdi-vpmadt032-loader \
 "
 
 PACKAGE_ARCH_dahdi-firmware = "all"
 PACKAGES =+ "dahdi-firmware ${DAHDI_KERNEL_MODULE}"
 
 FILES_${PN} = "${base_libdir}/modules/ ${sysconfdir}/udev/rules.d"
-FILES_dahdi-firmware = "${base_libdir}/firmware ${datadir}/dahdi"
+FILES_dahdi-firmware = "${base_libdir}/firmware ${datadir}/dahdi ${libdir}/hotplug/firmware "
 
 RRECOMMENDS_${PN} = "dahdi-firmware"
