@@ -4,7 +4,7 @@ PV = "0.15.0+gitr${SRCPV}"
 PRINC = "0"
 PR = "${INC_PR}.0"
 
-SRCREV = "3ae8682f974058970fa564f09a34a51e867b896b"
+SRCREV = "5d69fa52cf1e679e391519dd841da1579d640087"
 SRC_URI += "git://git.osmocom.org/openbsc.git;protocol=git"
 
 S = "${WORKDIR}/git/openbsc"
