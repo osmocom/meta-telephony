@@ -6,7 +6,7 @@ SECTION = "libs"
 DEPENDS = "libxml2"
 
 S = "${WORKDIR}/git"
-SRCREV = "d2704da4cb3efdf241d2cde037688badaef53f9a"
+SRCREV = "${AUTOREV}"
 SRC_URI = "git://git.osmocom.org/libsmpp34.git;protocol=git"
 PV = "1.14.0+gitr${SRCPV}"
 PR = "r0"
