@@ -1,5 +1,5 @@
 DESCRITOPN = "An utility library for Open Source Mobile Communications"
-DEPENDS = "libosmocore"
+DEPENDS = "libosmocore libosmo-netif"
 HOMEPAGE = "http://openbsc.gnumonks.org"
 LICENSE = "AGPLv3"
 
