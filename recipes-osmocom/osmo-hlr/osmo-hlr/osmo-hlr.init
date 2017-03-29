@@ -1,0 +1,48 @@
+!/bin/sh
+### BEGIN INIT INFO
+# Provides:		osmo-hlr
+# Required-Start:	$syslog $networking
+# Required-Stop:	$syslog
+# Default-Start:	5
+# Default-Stop:		1
+# Short-Description:	Osmocom HLR
+### END INIT INFO
+
+DAEMON=/usr/bin/osmo-hlr
+NAME=osmo-hlr
+DESC="Osmocom HLR"
+NORMAL_ARGS="-D -c /etc/osmocom/osmo-hlr.cfg -l /var/lib/osmocom/hlr.db"
+
+OSMOHLR_EXTRA_ARGS=""
+NO_START=1
+
+set -e
+
+test ! -r /etc/default/osmo-hlr || . /etc/default/osmo-hlr
+test "$NO_START" = "0" || exit 0
+test -x "$DAEMON" || exit 0
+
+case "$1" in
+  start)
+	echo -n "Starting $DESC: "
+	start-stop-daemon -S \
+	  -x "$DAEMON" -- $NORMAL_ARGS $OSMOHLR_EXTRA_ARGS
+	echo "$NAME."
+	;;
+  stop)
+	echo -n "Stopping $DESC: "
+	start-stop-daemon -K -x "$DAEMON"
+	echo "$NAME."
+	;;
+  restart|force-reload)
+	$0 stop
+	$0 start
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop|restart}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
