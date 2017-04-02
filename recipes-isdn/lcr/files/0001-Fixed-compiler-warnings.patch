@@ -1,0 +1,167 @@
+From 2aac6a668be131c610b6705a99817e6baf10599f Mon Sep 17 00:00:00 2001
+From: Andreas Eversberg <jolly@eversberg.eu>
+Date: Tue, 15 Dec 2015 20:49:18 +0100
+Subject: [PATCH] Fixed compiler warnings
+
+---
+ alawulaw.c | 18 +++++++++---------
+ gentones.c |  8 ++++----
+ genwave.c  | 10 +++++-----
+ 3 files changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/alawulaw.c b/alawulaw.c
+index cafe1af..f38fa46 100644
+--- a/alawulaw.c
++++ b/alawulaw.c
+@@ -13,7 +13,7 @@ signed int *audio_law_to_s32;
+ unsigned char silence;
+ 
+ /* ulaw -> signed 16-bit */
+-static signed int audio_ulaw_to_s32[] =
++static unsigned int audio_ulaw_to_s32[] =
+ {
+ 	0xffff8284, 0xffff8684, 0xffff8a84, 0xffff8e84,
+ 	0xffff9284, 0xffff9684, 0xffff9a84, 0xffff9e84,
+@@ -82,7 +82,7 @@ static signed int audio_ulaw_to_s32[] =
+ };
+ 
+ /* alaw -> signed 16-bit */
+-static signed int audio_alaw_to_s32[] =
++static unsigned int audio_alaw_to_s32[] =
+ {
+ 	0x000013fc, 0xffffec04, 0x00000144, 0xfffffebc,
+ 	0x0000517c, 0xffffae84, 0x0000051c, 0xfffffae4,
+@@ -155,7 +155,7 @@ unsigned char audio_s16_to_law[65536];
+ 
+ 
+ /* table is used to generate s16_to_alaw */
+-static short audio_alaw_relations[] =
++static unsigned short audio_alaw_relations[] =
+ {
+ 	0x8684, 0x55, 0x8a84, 0xd5, 0x8e84, 0x15, 0x9284, 0x95,
+ 	0x9684, 0x75, 0x9a84, 0xf5, 0x9e84, 0x35, 0xa284, 0xb5,
+@@ -231,32 +231,32 @@ void generate_tables(char law)
+ 
+ 	if (law == 'a') {
+ 		silence = 0x2a;
+-		audio_law_to_s32=audio_alaw_to_s32;
++		audio_law_to_s32 = (signed int *)audio_alaw_to_s32;
+ 		/* generating alaw-table */
+ 		i = j = 0;
+ 		while(i < 65536) {
+-			if (i-32768 > audio_alaw_relations[j<<1])
++			if (i-32768 > (signed short)audio_alaw_relations[j<<1])
+ 				j++;
+ 			if (j>255)
+ 				j=255;
+ 			audio_s16_to_law[(i-32768) & 0xffff]
+-				 = audio_alaw_relations[(j<<1)|1];
++				 = (signed short)audio_alaw_relations[(j<<1)|1];
+ 			i++;
+ 		}
+ 	} else {
+ 		silence = 0xff;
+-		audio_law_to_s32=audio_ulaw_to_s32;
++		audio_law_to_s32 = (signed int *)audio_ulaw_to_s32;
+ 		/* generating ulaw-table */
+ 		i = j = 0;
+ 		while(i < 32768) {
+-			if (i-32768 > audio_ulaw_to_s32[j])
++			if (i-32768 >  (signed int)audio_ulaw_to_s32[j])
+ 				j++;
+ 			audio_s16_to_law[(i-32768) & 0xffff] = j;
+ 			i++;
+ 		}
+ 		j = 255;
+ 		while(i < 65536) {
+-			if (i-0x32768 > audio_ulaw_to_s32[j])
++			if (i-0x32768 >  (signed int)audio_ulaw_to_s32[j])
+ 				j--;
+ 			audio_s16_to_law[(i-32768) & 0xffff] = j;
+ 			i++;
+diff --git a/gentones.c b/gentones.c
+index aaac659..a712f1a 100644
+--- a/gentones.c
++++ b/gentones.c
+@@ -10,7 +10,7 @@
+ 
+ 
+ /* ulaw -> signed 16-bit */
+-static short isdn_audio_ulaw_to_s16[] =
++static unsigned short isdn_audio_ulaw_to_s16[] =
+ {
+ 	0x8284, 0x8684, 0x8a84, 0x8e84, 0x9284, 0x9684, 0x9a84, 0x9e84,
+ 	0xa284, 0xa684, 0xaa84, 0xae84, 0xb284, 0xb684, 0xba84, 0xbe84,
+@@ -47,7 +47,7 @@ static short isdn_audio_ulaw_to_s16[] =
+ };
+ 
+ /* alaw -> signed 16-bit */
+-static short isdn_audio_alaw_to_s16[] =
++static unsigned short isdn_audio_alaw_to_s16[] =
+ {
+ 	0x13fc, 0xec04, 0x0144, 0xfebc, 0x517c, 0xae84, 0x051c, 0xfae4,
+ 	0x0a3c, 0xf5c4, 0x0048, 0xffb8, 0x287c, 0xd784, 0x028c, 0xfd74,
+@@ -92,7 +92,7 @@ unsigned char encode_isdn(short sample, char law)
+ 
+ 	i=0;
+ 	while(i<256) {
+-		diff = (law=='u')?isdn_audio_ulaw_to_s16[i]:isdn_audio_alaw_to_s16[i]-sample;
++		diff = (law=='u')?((signed short)isdn_audio_ulaw_to_s16[i]):((signed short)isdn_audio_alaw_to_s16[i])-sample;
+ //printf("s16=%d sample%d diff=%d\n",isdn_audio_to_s16[i],sample,diff);
+ 		if (diff<0)
+ 			diff=0-diff;
+@@ -150,7 +150,7 @@ void write_wav(FILE *fp, char *wav, char law)
+ 	short sample, sample2;
+ 	signed int size, chunk;
+ 	int gotfmt = 0, gotdata = 0;
+-	int ret;
++	int __attribute__((__unused__)) ret;
+ 
+ 	if ((wfp=fopen(wav,"r"))) {
+ 		ret=fread(buffer,8,1,wfp);
+diff --git a/genwave.c b/genwave.c
+index 685b5fa..fe74658 100644
+--- a/genwave.c
++++ b/genwave.c
+@@ -9,7 +9,7 @@
+ 
+ 
+ /* ulaw -> signed 16-bit */
+-static short isdn_audio_ulaw_to_s16[] =
++static unsigned short isdn_audio_ulaw_to_s16[] =
+ {
+ 	0x8284, 0x8684, 0x8a84, 0x8e84, 0x9284, 0x9684, 0x9a84, 0x9e84,
+ 	0xa284, 0xa684, 0xaa84, 0xae84, 0xb284, 0xb684, 0xba84, 0xbe84,
+@@ -46,7 +46,7 @@ static short isdn_audio_ulaw_to_s16[] =
+ };
+ 
+ /* alaw -> signed 16-bit */
+-static short isdn_audio_alaw_to_s16[] =
++static unsigned short isdn_audio_alaw_to_s16[] =
+ {
+ 	0x13fc, 0xec04, 0x0144, 0xfebc, 0x517c, 0xae84, 0x051c, 0xfae4,
+ 	0x0a3c, 0xf5c4, 0x0048, 0xffb8, 0x287c, 0xd784, 0x028c, 0xfd74,
+@@ -100,7 +100,7 @@ void write_law(FILE *fp, char *name, char law)
+ 	unsigned int i;
+ 	short sample;
+ 	unsigned int size, wsize;
+-	int ret;
++	int __attribute__((__unused__)) ret;
+ 
+ 	if ((lfp=fopen(name,"r"))) {
+ 		/* get size */
+@@ -134,9 +134,9 @@ void write_law(FILE *fp, char *name, char law)
+ 		while(i < size) {
+ 			ret = fread(buffer, 1, 1, lfp);
+ 			if (law == 'a')
+-				sample = isdn_audio_alaw_to_s16[*buffer];
++				sample = (signed short)isdn_audio_alaw_to_s16[*buffer];
+ 			else
+-				sample = isdn_audio_ulaw_to_s16[*buffer];
++				sample = (signed short)isdn_audio_ulaw_to_s16[*buffer];
+ 			ret = fwrite(&sample, 2, 1, fp);
+ 			i+=2;
+ 		}
+-- 
+1.9.1
+
