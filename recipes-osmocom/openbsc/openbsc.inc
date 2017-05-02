@@ -93,6 +93,8 @@ FILES_osmo-sgsn = " ${bindir}/osmo-sgsn \
 
 FILES_ipaccess-utils = " ${bindir}/ipaccess-find ${bindir}/ipaccess-config ${bindir}/ipaccess-proxy "
 FILES_osmo-bsc-nat = " ${bindir}/osmo-bsc_nat "
-FILES_osmo-gbproxy = " ${bindir}/osmo-gbproxy "
+FILES_osmo-gbproxy = " ${bindir}/osmo-gbproxy \
+		${systemd_unitdir}/system/osmo-gbproxy.service \
+		"
 FILES_osmo-gbproxy-dbg = " ${bindir}/.debug/osmo-gbproxy "
 
