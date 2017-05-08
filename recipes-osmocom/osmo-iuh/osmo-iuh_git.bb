@@ -4,7 +4,7 @@ PV = "0.1.0+gitr${SRCPV}"
 PRINC = "0"
 PR = "${INC_PR}.1"
 
-SRCREV = "c23c4fe06c543648a7c7dc429ce50f5cf79abe3a"
+SRCREV = "26531f9efc3a7366ef26e11855bc8ad46e9f8794"
 SRC_URI += "git://git.osmocom.org/osmo-iuh.git;protocol=git"
 
-S = "${WORKDIR}/git/osmo-iuh"
+S = "${WORKDIR}/git"

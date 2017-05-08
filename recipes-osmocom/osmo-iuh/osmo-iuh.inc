@@ -1,5 +1,5 @@
 DESCRIPTION = "OsmoHNBGW, libosmo-ranap"
-DEPENDS = "libosmocore libosmo-abis libosmo-netif libasn1c"
+DEPENDS = "libosmocore libosmo-abis libosmo-netif libosmo-sccp libasn1c"
 HOMEPAGE = "http://osmocom.org/projects/cellular-infrastructure"
 LICENSE = "AGPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
