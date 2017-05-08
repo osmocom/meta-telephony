@@ -37,9 +37,9 @@ do_install_append() {
 
 	# Install systemd files and enable on sysinit
 	install -d ${D}${systemd_unitdir}/system
-	for i in `ls ${S}/contrib/systemd`; do
-		install -m 0644 ${S}/contrib/systemd/$i ${D}${systemd_unitdir}/system/
-	done
+	install -m 0644 ${S}/contrib/systemd/osmo-msc.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${S}/contrib/systemd/osmo-sgsn.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${S}/contrib/systemd/osmo-bsc-mgcp.service ${D}${systemd_unitdir}/system/
 
 	install -d ${D}/var/lib/osmocom
 }
