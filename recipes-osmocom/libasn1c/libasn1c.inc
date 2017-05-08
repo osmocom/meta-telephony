@@ -6,6 +6,6 @@ LICENSE = "AGPLv3"
 
 INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
+LIC_FILES_CHKSUM = "file://COPYING;md5=25192323023bb0db6998ac6fcd5aa6a1"
 
 inherit autotools pkgconfig
