@@ -1,0 +1,26 @@
+From b5691871e1b6754c85d616341bfe4a9deb6ecbc7 Mon Sep 17 00:00:00 2001
+Message-Id: <b5691871e1b6754c85d616341bfe4a9deb6ecbc7.1497349490.git.daniel@totalueberwachung.de>
+From: Daniel Willmann <daniel@totalueberwachung.de>
+Date: Tue, 13 Jun 2017 11:52:39 +0200
+Subject: [PATCH 1/1] Disable tests because python3 is not available
+
+Change-Id: Id6a1e483781d95578d6026fdfb39b24acfc89224
+---
+ Makefile.am | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 0d60cee..40dad90 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -3,7 +3,6 @@ AUTOMAKE_OPTIONS = foreign dist-bzip2
+ SUBDIRS = \
+ 	src \
+ 	sql \
+-	tests \
+ 	$(NULL)
+ 
+ EXTRA_DIST = \
+-- 
+2.1.4
+
