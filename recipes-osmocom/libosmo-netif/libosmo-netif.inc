@@ -1,5 +1,6 @@
 DESCRITOPN = "Osmux utility classes"
-DEPENDS = "libosmo-abis"
+DEPENDS = "libosmo-abis lksctp-tools"
+
 HOMEPAGE = "http://git.osmocom.org"
 LICENSE = "GPLv2+"
 
