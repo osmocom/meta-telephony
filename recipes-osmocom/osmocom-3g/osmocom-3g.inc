@@ -8,7 +8,10 @@ RDEPENDS_osmo-msc = "libdbd-sqlite3"
 
 SRC_URI = "file://osmo-msc.init \
 	   file://osmo-bsc_mgcp.init \
-	   file://osmo-sgsn.init"
+	   file://osmo-sgsn.init \
+	   file://osmo-msc.service \
+	   file://osmo-sgsn.service \
+	   file://osmo-bsc-mgcp.service"
 
 INC_PR = "r2.${META_TELEPHONY_OSMO_INC}"
 
