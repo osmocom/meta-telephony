@@ -10,7 +10,7 @@ SRC_URI = "file://osmo-msc.init \
 	   file://osmo-bsc_mgcp.init \
 	   file://osmo-sgsn.init"
 
-INC_PR = "r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r2.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += " --enable-iu --enable-smpp --enable-mgcp-transcoding --with-g729"
@@ -37,9 +37,9 @@ do_install_append() {
 
 	# Install systemd files and enable on sysinit
 	install -d ${D}${systemd_unitdir}/system
-	install -m 0644 ${S}/contrib/systemd/osmo-msc.service ${D}${systemd_unitdir}/system/
-	install -m 0644 ${S}/contrib/systemd/osmo-sgsn.service ${D}${systemd_unitdir}/system/
-	install -m 0644 ${S}/contrib/systemd/osmo-bsc-mgcp.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${WORKDIR}/osmo-msc.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${WORKDIR}/osmo-sgsn.service ${D}${systemd_unitdir}/system/
+	install -m 0644 ${WORKDIR}/osmo-bsc-mgcp.service ${D}${systemd_unitdir}/system/
 
 	install -d ${D}/var/lib/osmocom
 }
