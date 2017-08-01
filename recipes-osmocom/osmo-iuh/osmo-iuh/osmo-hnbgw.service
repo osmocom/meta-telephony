@@ -1,0 +1,16 @@
+[Unit]
+Description=Osmocom Home Nodeb Gateway (OsmoHNBGW)
+After=osmo-msc.service
+Wants=osmo-msc.service 
+After=osmo-sgsn.service
+Wants=osmo-sgsn.service
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/osmo-hnbgw -c /etc/osmocom/osmo-hnbgw.cfg
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

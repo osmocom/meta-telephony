@@ -4,7 +4,8 @@ HOMEPAGE = "http://osmocom.org/projects/cellular-infrastructure"
 LICENSE = "AGPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-SRC_URI = "file://osmo-hnbgw.init"
+SRC_URI = "file://osmo-hnbgw.init \
+	   file://osmo-hnbgw.service"
 
 INC_PR = "r1.${META_TELEPHONY_OSMO_INC}"
 
@@ -31,6 +32,8 @@ do_install_append() {
 	for i in `ls ${S}/contrib/systemd`; do
 		install -m 0644 ${S}/contrib/systemd/$i ${D}${systemd_unitdir}/system/
 	done
+
+	install -m 0644 ${WORKDIR}/osmo-hnbgw.service ${D}${systemd_unitdir}/system/
 
 	install -d ${D}/var/lib/osmocom
 }
