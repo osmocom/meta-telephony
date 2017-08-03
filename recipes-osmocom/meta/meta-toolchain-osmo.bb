@@ -13,12 +13,7 @@ do_populate_sdk_append() {
 
 
 create_symlink() {
-        # master or dora?
-        if [ -e ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.sh ]; then
-                cd ${SDKDEPLOYDIR}/
-        else
-                cd ${SDK_DEPLOY}/
-        fi
+        cd ${SDKDEPLOYDIR}/
 
         rm -f ${TOOLCHAIN_OUTPUT_BASENAME}.sh
         ln -s ${TOOLCHAIN_OUTPUTNAME}.sh ${TOOLCHAIN_OUTPUT_BASENAME}.sh
