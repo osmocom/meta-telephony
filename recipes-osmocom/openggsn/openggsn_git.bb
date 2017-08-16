@@ -1,7 +1,7 @@
 DESCRITOPN = "OpenGGSN a Free Software GGSN"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
-PV = "0.92+gitr${SRCPV}"
+PV = "0.94+gitr${SRCPV}"
 PR = "r0"
 
 SRCREV = "6045efb642918ac43056ca6a40cda2fe2e6db08d"
