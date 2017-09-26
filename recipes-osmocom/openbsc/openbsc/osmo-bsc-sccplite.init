@@ -1,24 +1,24 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:		osmo-sgsn
+# Provides:		osmo-bsc-sccplite
 # Required-Start:	$syslog $networking
 # Required-Stop:	$syslog
 # Default-Start:	5
 # Default-Stop:		1
-# Short-Description:	Osmocom Serving GPRS Support Node
+# Short-Description:	Osmocom GSM Base Station Controller (legacy, with SCCPLite)
 ### END INIT INFO
 
-DAEMON=/usr/bin/osmo-sgsn
-NAME=osmo-sgsn
-DESC="Osmocom Serving GPRS Support Node"
-NORMAL_ARGS="-D -c /etc/osmocom/osmo-sgsn.cfg"
+DAEMON=/usr/bin/osmo-bsc-sccplite
+NAME=osmo-bsc-sccplite
+DESC="Osmocom GSM Base Station Controller"
+NORMAL_ARGS="-D -c /etc/osmocom/osmo-bsc-sccplite.cfg -r /var/run/openbsc.ctl"
 
-OSMOSGSN_EXTRA_ARGS=""
-NO_START=0
+OSMOBTS_EXTRA_ARGS=""
+NO_START=1
 
 set -e
 
-test ! -r /etc/default/osmo-sgsn || . /etc/default/osmo-sgsn
+test ! -r /etc/default/osmo-bsc-sccplite || . /etc/default/osmo-bsc-sccplite
 test "$NO_START" = "0" || exit 0
 test -x "$DAEMON" || exit 0
 
@@ -26,7 +26,7 @@ case "$1" in
   start)
 	echo -n "Starting $DESC: "
 	start-stop-daemon -S \
-	  -x "$DAEMON" -- $NORMAL_ARGS $OSMOSGSN_EXTRA_ARGS
+	  -x "$DAEMON" -- $NORMAL_ARGS $OSMOBTS_EXTRA_ARGS
 	echo "$NAME."
 	;;
   stop)
@@ -34,7 +34,7 @@ case "$1" in
 	start-stop-daemon -K -x "$DAEMON"
 	echo "$NAME."
 	;;
-  restart|force-reload)
+  restart)
 	$0 stop
 	$0 start
 	;;

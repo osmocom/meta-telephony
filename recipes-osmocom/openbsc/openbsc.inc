@@ -7,14 +7,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
 SRC_URI = "file://osmo-nitb.init \
-	   file://osmo-bsc_mgcp.init \
-	   file://osmo-bsc.init \
-	   file://osmo-sgsn.init"
+	   file://osmo-bsc-sccplite.init \
+	   file://osmo-bsc-sccplite.service \
+	   "
 
-INC_PR = "r22.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r23.${META_TELEPHONY_OSMO_INC}"
 
 
-EXTRA_OECONF += " --enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
+EXTRA_OECONF += "--enable-osmo-bsc --enable-mgcp-transcoding --with-g729"
 
 inherit autotools update-rc.d pkgconfig
 
@@ -26,50 +26,38 @@ do_configure_prepend() {
 do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
-	install -m 0660 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/osmo-bsc.cfg
-	install -m 0660 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
-	install -m 0660 ${S}/doc/examples/osmo-sgsn/osmo-sgsn.cfg ${D}${sysconfdir}/osmocom/osmo-sgsn.cfg
+	install -m 0660 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
 
 	# Install sysv-init files
 	install -d ${D}${sysconfdir}/init.d
 	install -d ${D}${sysconfdir}/rc5.d
 	install -m 0775 ${WORKDIR}/osmo-nitb.init ${D}${sysconfdir}/init.d/osmo-nitb
-	install -m 0775 ${WORKDIR}/osmo-bsc_mgcp.init ${D}${sysconfdir}/init.d/osmo-bsc-mgcp
-	install -m 0775 ${WORKDIR}/osmo-bsc.init ${D}${sysconfdir}/init.d/osmo-bsc
-	install -m 0775 ${WORKDIR}/osmo-sgsn.init ${D}${sysconfdir}/init.d/osmo-sgsn
+	install -m 0775 ${WORKDIR}/osmo-bsc-sccplite.init ${D}${sysconfdir}/init.d/osmo-bsc-sccplite
 
 	# Install systemd files and enable on sysinit
-	install -d ${D}${systemd_unitdir}/system
-	for i in `ls ${S}/contrib/systemd`; do
-		install -m 0644 ${S}/contrib/systemd/$i ${D}${systemd_unitdir}/system/
-	done
+	install -d ${D}${systemd_system_unitdir}/
+	install -m 0644 ${S}/contrib/systemd/osmo-nitb.service ${D}${systemd_system_unitdir}/
+	install -m 0644 ${WORKDIR}/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
 
 	install -d ${D}/var/lib/osmocom
+
+	mv ${D}${bindir}/osmo-bsc ${D}${bindir}/osmo-bsc-sccplite
 }
 
-PACKAGES =+ "osmo-bsc osmo-nitb osmo-gbproxy osmo-gbproxy-dbg osmo-sgsn ipaccess-utils osmo-bsc-mgcp osmo-bsc-nat"
+PACKAGES =+ "osmo-bsc-sccplite osmo-nitb"
 
-INITSCRIPT_PACKAGES = "osmo-bsc osmo-bsc-mgcp osmo-nitb osmo-sgsn"
+INITSCRIPT_PACKAGES = "osmo-bsc-sccplite osmo-nitb"
 
 # Do not start any of the services by default
 SYSTEMD_AUTO_ENABLE = "disable"
 
-CONFFILES_osmo-bsc = "${sysconfdir}/osmocom/osmo-bsc.cfg"
-INITSCRIPT_NAME_osmo-bsc = "osmo-bsc"
-INITSCRIPT_PARAMS_osmo-bsc = "defaults 30 30"
-FILES_osmo-bsc = " ${bindir}/osmo-bsc \
-		${sysconfdir}/osmocom/osmo-bsc.cfg \
-		${sysconfdir}/init.d/osmo-bsc \
-		${systemd_unitdir}/system/osmo-bsc.service \
-		"
-
-CONFFILES_osmo-bsc-mgcp = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
-INITSCRIPT_NAME_osmo-bsc-mgcp = "osmo-bsc-mgcp"
-INITSCRIPT_PARAMS_osmo-bsc-mgcp = "defaults 30 30"
-FILES_osmo-bsc-mgcp = " ${bindir}/osmo-bsc_mgcp \
-		${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg \
-		${sysconfdir}/init.d/osmo-bsc-mgcp \
-		${systemd_unitdir}/system/osmo-bsc-mgcp.service \
+CONFFILES_osmo-bsc-sccplite = "${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg"
+INITSCRIPT_NAME_osmo-bsc-sccplite = "osmo-bsc-sccplite"
+INITSCRIPT_PARAMS_osmo-bsc-sccplite = "defaults 30 30"
+FILES_osmo-bsc-sccplite = " ${bindir}/osmo-bsc-sccplite \
+		${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg \
+		${sysconfdir}/init.d/osmo-bsc-sccplite \
+		${systemd_system_unitdir}/osmo-bsc-sccplite.service \
 		"
 
 CONFFILES_osmo-nitb = "${sysconfdir}/osmocom/osmo-nitb.cfg"
@@ -81,19 +69,3 @@ FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		${sysconfdir}/osmocom/osmo-nitb.cfg \
 		${systemd_unitdir}/system/osmo-nitb.service \
 		"
-
-CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
-INITSCRIPT_NAME_osmo-sgsn = "osmo-sgsn"
-INITSCRIPT_PARAMS_osmo-sgsn = "defaults 30 30"
-FILES_osmo-sgsn = " ${bindir}/osmo-sgsn \
-		${sysconfdir}/init.d/osmo-sgsn \
-		${sysconfdir}/osmocom/osmo-sgsn.cfg \
-		${systemd_unitdir}/system/osmo-sgsn.service \
-		"
-
-FILES_ipaccess-utils = " ${bindir}/ipaccess-find ${bindir}/ipaccess-config ${bindir}/ipaccess-proxy "
-FILES_osmo-bsc-nat = " ${bindir}/osmo-bsc_nat "
-FILES_osmo-gbproxy = " ${bindir}/osmo-gbproxy \
-		${systemd_unitdir}/system/osmo-gbproxy.service \
-		"
-FILES_osmo-gbproxy-dbg = " ${bindir}/.debug/osmo-gbproxy "
