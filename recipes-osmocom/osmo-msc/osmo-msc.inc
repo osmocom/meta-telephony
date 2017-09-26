@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libdbi libasn1c osmo-iuh libosmocore libosmo-abis libosmo-sccp libosmo-netif libsmpp34 osmo-mgw"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -19,6 +19,10 @@ do_install_append() {
 
 	install -m 0644 ${S}/doc/examples/osmo-msc/osmo-msc.cfg ${D}${sysconfdir}/osmocom/
 	install -m 0644 ${S}/contrib/systemd/osmo-msc.service ${D}${systemd_system_unitdir}/
+
+	# osmo-bsc already provides these, see issue Osmocom #2522:
+	rm -f ${D}${bindir}/.debug/*meas*
+	rm -f ${D}${bindir}/*meas*
 }
 
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
