@@ -1,4 +1,4 @@
-DESCRITOPN = "An utility library for Open Source Mobile Communications"
+DESCRIPTION = "An utility library for Open Source Mobile Communications"
 DEPENDS = "libosmocore libosmo-netif"
 HOMEPAGE = "https://osmocom.org/projects/libosmo-sccp"
 LICENSE = "AGPLv3"

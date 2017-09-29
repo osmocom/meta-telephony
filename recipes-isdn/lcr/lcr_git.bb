@@ -1,4 +1,4 @@
-DESCRITOPN = "Linux Call Router"
+DESCRIPTION = "Linux Call Router"
 DEPENDS = "libgsm libopencore-amr sofia-sip"
 HOMEPAGE = "http://isdn.eversberg.eu/"
 LICENSE = "GPLv2+"

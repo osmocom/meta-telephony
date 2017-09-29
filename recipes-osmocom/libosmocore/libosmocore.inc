@@ -1,4 +1,4 @@
-DESCRITOPN = "An utility library for Open Source Mobile Communications"
+DESCRIPTION = "An utility library for Open Source Mobile Communications"
 HOMEPAGE = "http://openbsc.gnumonks.org"
 LICENSE = "GPLv2+"
 

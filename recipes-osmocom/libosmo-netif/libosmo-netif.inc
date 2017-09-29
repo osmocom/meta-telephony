@@ -1,4 +1,4 @@
-DESCRITOPN = "Osmux utility classes"
+DESCRIPTION = "Osmux utility classes"
 DEPENDS = "libosmo-abis"
 HOMEPAGE = "http://git.osmocom.org"
 LICENSE = "GPLv2+"

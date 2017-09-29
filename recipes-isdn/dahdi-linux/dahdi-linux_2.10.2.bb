@@ -1,4 +1,4 @@
-DESCRITOPN = "Digium Asterisk Hardware Driver Interface - Linux kernel part"
+DESCRIPTION = "Digium Asterisk Hardware Driver Interface - Linux kernel part"
 SECTION = "base"
 HOMEPAGE = "http://www.asterisk.org"
 LICENSE = "GPLv2"

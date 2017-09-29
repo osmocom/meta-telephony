@@ -1,4 +1,4 @@
-DESCRITOPN = "An utility library for Open Source Mobile Communications"
+DESCRIPTION = "An utility library for Open Source Mobile Communications"
 DEPENDS = "libosmocore ortp"
 DEPENDS_append_geode = "dahdi-linux"
 HOMEPAGE = "http://openbsc.gnumonks.org"

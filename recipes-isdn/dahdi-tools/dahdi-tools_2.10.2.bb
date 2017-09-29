@@ -1,4 +1,4 @@
-DESCRITOPN = "Utilities for the DAHDI Asterisk Linux kernel drivers"
+DESCRIPTION = "Utilities for the DAHDI Asterisk Linux kernel drivers"
 HOMEPAGE = "http://www.asterisk.org"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "\
