@@ -3,13 +3,15 @@ HOMEPAGE = "https://osmocom.org/projects/osmomsc"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "libdbi libasn1c osmo-iuh libosmocore libosmo-abis libosmo-sccp libosmo-netif libsmpp34 osmo-mgw"
+DEPENDS = "libdbi libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
-EXTRA_OECONF += "--enable-smpp --enable-iu"
+PACKAGECONFIG ??= "smpp ${@bb.utils.filter('DISTRO_FEATURES', 'iu', d)}"
+PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c osmo-iuh,"
+PACKAGECONFIG[smpp] = "--enable-smpp,--disable-smpp,libsmpp34,"
 
 RDEPENDS_${PN} = "libdbd-sqlite3"
 
