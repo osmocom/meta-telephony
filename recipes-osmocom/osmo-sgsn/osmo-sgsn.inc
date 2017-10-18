@@ -3,9 +3,9 @@ HOMEPAGE = "https://osmocom.org/projects/osmosgsn"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "c-ares libpcap libasn1c libosmocore libosmo-netif osmo-iuh osmo-ggsn"
+DEPENDS = "c-ares libpcap libasn1c libosmocore libosmo-netif libosmo-sccp osmo-iuh osmo-ggsn"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
