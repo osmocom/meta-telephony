@@ -11,7 +11,7 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc-sccplite.service \
 	   "
 
-INC_PR = "r23.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r24.${META_TELEPHONY_OSMO_INC}"
 
 
 EXTRA_OECONF += "--enable-osmo-bsc --enable-mgcp-transcoding --with-g729"
@@ -26,7 +26,7 @@ do_configure_prepend() {
 do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
-	install -m 0660 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
+	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
 
 	# Install sysv-init files
 	install -d ${D}${sysconfdir}/init.d
@@ -41,7 +41,6 @@ do_install_append() {
 
 	install -d ${D}/var/lib/osmocom
 
-	mv ${D}${bindir}/osmo-bsc ${D}${bindir}/osmo-bsc-sccplite
 }
 
 PACKAGES =+ "osmo-bsc-sccplite osmo-nitb"
