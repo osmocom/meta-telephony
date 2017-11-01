@@ -17,4 +17,3 @@ inherit autotools pkgconfig
 
 PACKAGES =+ "${PN}-apps"
 FILES_${PN}-apps = "${bindir}/*"
-

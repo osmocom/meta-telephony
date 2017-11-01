@@ -1,6 +1,6 @@
 require ${PN}.inc
 
-PV = "0.15.0+gitr${SRCPV}"
+PV = "1.0.0+gitr${SRCPV}"
 PRINC = "0"
 PR = "${INC_PR}.0"
 

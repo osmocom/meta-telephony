@@ -3,8 +3,8 @@ require ${PN}.inc
 S = "${WORKDIR}/git"
 SRCREV = "6cd8d1243711f4de2f1314c7b87b972572cdec4e"
 SRC_URI = "git://git.osmocom.org/libosmo-sccp.git;protocol=git"
-PV = "0.7.0+gitr${SRCPV}"
-PR = "${INC_PR}.2"
+PV = "0.8.1+gitr${SRCPV}"
+PR = "${INC_PR}.0"
 
 # we require the tests to link to the static libosmo-sigtran library to
 # access symbols not starting with osmo_*
