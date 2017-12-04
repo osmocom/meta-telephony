@@ -3,7 +3,7 @@ HOMEPAGE = "https://osmocom.org/projects/openggsn"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "1.0.0+gitr${SRCPV}"
-PR = "r0"
+PR = "r1"
 
 SRCREV = "859f9b0752419d43928d465bc96a87238c6d7940"
 SRC_URI = "git://git.osmocom.org/osmo-ggsn                   \
@@ -34,6 +34,8 @@ SYSTEMD_SERVICE_osmo-ggsn = "osmo-ggsn.service"
 INITSCRIPT_PACKAGES = "osmo-ggsn"
 INITSCRIPT_NAME_osmo-ggsn = "osmo-ggsn"
 INITSCRIPT_PARAMS_osmo-ggsn = "defaults 29 29"
+
+CONFFILES_osmo-ggsn = "${sysconfdir}/osmocom/osmo-ggsn.cfg"
 
 FILES_libgtp = "${libdir}/*${SOLIBS}"
 FILES_libgtp-dev = "${includedir} ${libdir}/lib*${SOLIBSDEV} ${libdir}/*.la"

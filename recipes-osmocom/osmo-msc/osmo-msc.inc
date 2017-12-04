@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libdbi libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
-INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -28,3 +28,4 @@ do_install_append() {
 }
 
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
+CONFFILES_osmo-msc = "${sysconfdir}/osmocom/osmo-msc.cfg"

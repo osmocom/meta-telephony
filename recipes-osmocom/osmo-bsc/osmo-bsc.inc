@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "sqlite3 libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -23,6 +23,8 @@ PACKAGES =+ "osmo-bsc-nat-doc osmo-bsc-nat ipaccess-utils"
 SYSTEMD_PACKAGES = "osmo-bsc"
 SYSTEMD_SERVICE_osmo-bsc = "osmo-bsc.service"
 
+CONFFILES_osmo-bsc = "${sysconfdir}/osmocom/osmo-bsc.cfg"
+
 FILES_ipaccess-utils = " \
 		${bindir}/ipaccess-find \
 		${bindir}/ipaccess-config \
@@ -33,5 +35,6 @@ FILES_osmo-bsc-nat = " \
 		${bindir}/osmo-bsc_nat \
 		${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
 		"
+CONFFILES_osmo-bsc-nat = "${sysconfdir}/osmocom/osmo-bsc_nat.cfg"
 
 FILES_osmo-bsc-nat-doc = " ${docdir}/osmo-bsc/examples/osmo-bsc_nat "

@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "c-ares libpcap libosmocore libosmo-netif libosmo-sccp osmo-ggsn"
 
-INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -29,15 +29,19 @@ SYSTEMD_PACKAGES = "osmo-sgsn osmo-gbproxy"
 SYSTEMD_SERVICE_osmo-sgsn = "osmo-sgsn.service"
 SYSTEMD_SERVICE_osmo-gbproxy = "osmo-gbproxy.service"
 
+CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
+
 FILES_osmo-gbproxy = " \
 		${bindir}/osmo-gbproxy \
 		${sysconfdir}/osmocom/osmo-gbproxy.cfg \
 		"
+CONFFILES_osmo-gbproxy = "${sysconfdir}/osmocom/osmo-gbproxy.cfg"
 
 FILES_osmo-gtphub = " \
 		${bindir}/osmo-gtphub \
 		${sysconfdir}/osmocom/osmo-gtphub.cfg \
 		"
+CONFFILES_osmo-gtphub = "${sysconfdir}/osmocom/osmo-gtphub.cfg"
 
 FILES_osmo-gbproxy-doc = " ${docdir}/osmo-sgsn/examples/osmo-gbproxy "
 FILES_osmo-gtphub-doc = " ${docdir}/osmo-sgsn/examples/osmo-gtphub "

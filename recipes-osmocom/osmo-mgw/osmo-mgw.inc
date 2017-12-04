@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libosmocore libosmo-netif bcg729 libgsm"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -20,3 +20,4 @@ do_install_append() {
 }
 
 SYSTEMD_SERVICE_osmo-mgw = "osmo-bsc-mgcp.service"
+CONFFILES_osmo-mgw = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
