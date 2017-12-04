@@ -3,14 +3,14 @@ HOMEPAGE = "https://osmocom.org/projects/osmosgsn"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "c-ares libpcap libosmocore libosmo-netif libosmo-sccp osmo-ggsn"
+DEPENDS = "c-ares libpcap libosmocore libosmo-netif osmo-ggsn"
 
 INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'iu', d)}"
-PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c osmo-iuh,"
+PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c libosmo-sccp osmo-iuh,"
 
 do_install_append() {
 	install -d ${D}${systemd_system_unitdir}/
