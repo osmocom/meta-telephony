@@ -10,4 +10,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 inherit autotools pkgconfig
 
-ALLOW_EMPTY_libosmo-abis = "1"
+PACKAGES =+ "libosmotrau libosmotrau-dev"
+
+FILES_libosmotrau = "${libdir}/libosmotrau${SOLIBS}"
+FILES_libosmotrau-dev = " \
+			${includedir}/osmocom/trau \
+			${libdir}/pkgconfig/libosmotrau.pc \
+			${libdir}/libosmotrau${SOLIBSDEV} \
+			"
