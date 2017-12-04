@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "c-ares libpcap libosmocore libosmo-netif libosmo-sccp osmo-ggsn"
 
-INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -18,6 +18,7 @@ do_install_append() {
 
 	install -m 0644 ${S}/doc/examples/osmo-sgsn/osmo-sgsn.cfg ${D}${sysconfdir}/osmocom/
 	install -m 0644 ${S}/doc/examples/osmo-gbproxy/osmo-gbproxy.cfg ${D}${sysconfdir}/osmocom/
+	install -m 0644 ${S}/doc/examples/osmo-gtphub/osmo-gtphub.cfg ${D}${sysconfdir}/osmocom/
 
 	install -m 0644 ${S}/contrib/systemd/osmo-sgsn.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-gbproxy.service ${D}${systemd_system_unitdir}/
