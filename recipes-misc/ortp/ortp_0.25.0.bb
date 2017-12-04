@@ -1,5 +1,4 @@
 require ortp.inc
-DEPENDS = "glib-2.0 openssl"
 PR = "${INC_PR}.1"
 
 SRC_URI[md5sum] = "f44b4ab2a8de32c19abfa584c4426f76"
