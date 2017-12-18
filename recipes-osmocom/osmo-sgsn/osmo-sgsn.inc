@@ -3,7 +3,7 @@ HOMEPAGE = "https://osmocom.org/projects/osmosgsn"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "c-ares libpcap libosmocore libosmo-netif osmo-ggsn"
+DEPENDS = "c-ares libosmocore libosmo-netif osmo-ggsn"
 
 INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
