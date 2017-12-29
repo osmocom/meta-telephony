@@ -1,0 +1,12 @@
+--- a/Makefile.am	2017-12-29 12:29:35.504078484 +0100
++++ b/Makefile.am	2017-12-29 12:29:44.428146890 +0100
+@@ -4,7 +4,7 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-SUBDIRS = drivers tests @docs_subdirs@
++SUBDIRS = drivers @docs_subdirs@
+ 
+ EXTRA_DIST = AUTHORS COPYING ChangeLog INSTALL README README.win32 README.osx README.encodings TODO libdbi-drivers.spec.in config.h.in Makefile.w32 autogen.sh fixlt.sh
+ 
+

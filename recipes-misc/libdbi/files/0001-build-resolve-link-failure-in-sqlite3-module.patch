@@ -1,0 +1,28 @@
+From 29ea4fd2c00a3c39ab4de08e3f333d5f4e219569 Mon Sep 17 00:00:00 2001
+Message-Id: <29ea4fd2c00a3c39ab4de08e3f333d5f4e219569.1515054303.git.daniel@totalueberwachung.de>
+From: Jan Engelhardt <jengelh@inai.de>
+Date: Wed, 4 Sep 2013 12:52:32 +0200
+Subject: [PATCH 1/1] build: resolve link failure in sqlite3 module
+
+The sqlite3 backend fails to link because the wrong library name is
+used. (Ideally, libdbi-drivers should use PKG_CHECK_MODULES instead.)
+---
+ acinclude.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/acinclude.m4 b/acinclude.m4
+index 8e89af8..45db616 100644
+--- a/acinclude.m4
++++ b/acinclude.m4
+@@ -310,7 +310,7 @@ if test "$ac_sqlite3" = "yes"; then
+ 		AC_SEARCH_LIBS_VAR([sqlite3_exec], sqlite3, , , , SQLITE3_LIBS)
+ 		SQLITE3_LDFLAGS=""
+ 	else
+-		SQLITE3_LIBS=-lsqlite
++		SQLITE3_LIBS=-lsqlite3
+ 		SQLITE3_LDFLAGS=-L$ac_sqlite3_libdir
+ 	fi
+ 
+-- 
+2.11.0
+
