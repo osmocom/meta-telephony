@@ -19,11 +19,13 @@ do_install_append() {
 	install -m 0644 ${S}/contrib/systemd/osmo-bsc.service ${D}${systemd_system_unitdir}/
 }
 
-PACKAGES =+ "osmo-bsc-nat-doc osmo-bsc-nat ipaccess-utils bs11-utils"
+PACKAGES =+ "osmo-bsc-nat-doc osmo-bsc-nat ipaccess-utils bs11-utils abisip-find"
 SYSTEMD_PACKAGES = "osmo-bsc"
 SYSTEMD_SERVICE_osmo-bsc = "osmo-bsc.service"
 
 CONFFILES_osmo-bsc = "${sysconfdir}/osmocom/osmo-bsc.cfg"
+
+FILES_abisip-find = "${bindir}/abisip-find"
 
 FILES_bs11-utils = " \
 		${bindir}/bs11_config \
