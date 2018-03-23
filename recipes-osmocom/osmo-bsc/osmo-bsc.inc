@@ -3,7 +3,7 @@ HOMEPAGE = "https://osmocom.org/projects/osmobsc"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "sqlite3 libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
+DEPENDS = "sqlite3 libpcap libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
 INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
@@ -19,7 +19,7 @@ do_install_append() {
 	install -m 0644 ${S}/contrib/systemd/osmo-bsc.service ${D}${systemd_system_unitdir}/
 }
 
-PACKAGES =+ "osmo-bsc-nat-doc osmo-bsc-nat ipaccess-utils bs11-utils abisip-find"
+PACKAGES =+ "osmo-bsc-nat-doc osmo-bsc-nat meas-utils ipaccess-utils bs11-utils abisip-find"
 SYSTEMD_PACKAGES = "osmo-bsc"
 SYSTEMD_SERVICE_osmo-bsc = "osmo-bsc.service"
 
@@ -36,6 +36,12 @@ FILES_ipaccess-utils = " \
 		${bindir}/ipaccess-find \
 		${bindir}/ipaccess-config \
 		${bindir}/ipaccess-proxy \
+		"
+
+FILES_meas-utils = " \
+		${bindir}/osmo-meas-udp2db \
+		${bindir}/osmo-meas-pcap2db \
+		${bindir}/meas_json \
 		"
 
 FILES_osmo-bsc-nat = " \
