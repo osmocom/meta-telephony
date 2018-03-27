@@ -1,10 +1,10 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "32e5641dbbfd91b650a9ec8cf62d28fd22109e9e"
+SRCREV = "a2501a20651bad1c1645547c8ad99af4f5c64e2e"
 SRC_URI = "git://git.osmocom.org/libosmocore.git;protocol=git;nobranch=1"
 PV = "0.10.2+gitr${SRCPV}"
-PR = "r1"
+PR = "r0"
 
 DEPENDS += "libtalloc gnutls"
 

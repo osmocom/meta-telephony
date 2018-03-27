@@ -3,7 +3,7 @@ require ${PN}.inc
 DEPENDS += "libtalloc"
 
 S = "${WORKDIR}/git"
-SRCREV = "d1dd22c38e86f123c8f9a93c2789deafdfcb9265"
+SRCREV = "49917c129b1456585258b0ebe89a513ecef823a8"
 SRC_URI = "git://git.osmocom.org/libosmo-abis.git;protocol=git"
 PV = "0.4.0+gitr${SRCPV}"
 PR = "${INC_PR}.0"

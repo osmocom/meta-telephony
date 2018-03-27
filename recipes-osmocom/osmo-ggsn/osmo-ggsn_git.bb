@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 PV = "1.1.0+gitr${SRCPV}"
 PR = "r0"
 
-SRCREV = "4f0343233b83337afa1e1dfb4bcf9d076ecd4be2"
+SRCREV = "a16c7501a4eccded2919fab0d485f77fb87dc81a"
 SRC_URI = "git://git.osmocom.org/osmo-ggsn                   \
            file://osmo-ggsn.init                             \
 	   file://libgtp-queue_depth_32.patch		    \
