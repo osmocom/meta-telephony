@@ -11,10 +11,10 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc-sccplite.service \
 	   "
 
-INC_PR = "r24.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r25.${META_TELEPHONY_OSMO_INC}"
 
 
-EXTRA_OECONF += "--enable-osmo-bsc --enable-mgcp-transcoding --with-g729"
+EXTRA_OECONF += "--enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
 inherit autotools update-rc.d pkgconfig
 
