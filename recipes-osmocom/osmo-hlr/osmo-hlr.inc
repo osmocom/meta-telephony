@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libtalloc libosmocore libosmo-abis sqlite3 sqlite3-native"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 

@@ -2,10 +2,10 @@ DESCRIPTION = "Osmocom GGSN implementation"
 HOMEPAGE = "https://osmocom.org/projects/openggsn"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
-PV = "1.1.0+gitr${SRCPV}"
+PV = "1.2.1+gitr${SRCPV}"
 PR = "r0"
 
-SRCREV = "a16c7501a4eccded2919fab0d485f77fb87dc81a"
+SRCREV = "ac07625086948281295e54dd295228153ecd5ff0"
 SRC_URI = "git://git.osmocom.org/osmo-ggsn                   \
            file://osmo-ggsn.init                             \
 	   file://libgtp-queue_depth_32.patch		    \
