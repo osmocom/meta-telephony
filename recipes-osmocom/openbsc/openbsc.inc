@@ -18,11 +18,6 @@ EXTRA_OECONF += "--enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --wit
 
 inherit autotools update-rc.d pkgconfig
 
-# because "${WORKDIR}/git" is not a git repo, it can't figure out the version
-do_configure_prepend() {
-	echo "${PV}" > ${S}/.tarball-version
-}
-
 do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg

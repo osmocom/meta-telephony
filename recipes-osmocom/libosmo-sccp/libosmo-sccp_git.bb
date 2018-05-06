@@ -14,11 +14,6 @@ PACKAGES =+ "osmo-stp"
 SYSTEMD_PACKAGES = "osmo-stp"
 SYSTEMD_SERVICE_osmo-stp = "osmo-stp.service"
 
-# because "${WORKDIR}/git" is not a git repo, it can't figure out the version
-do_configure_prepend() {
-    echo "${PV}" > ${S}/.tarball-version
-}
-
 do_install_append() {
 	install -d ${D}${systemd_system_unitdir}/
 	install -d ${D}${sysconfdir}/osmocom/
