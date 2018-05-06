@@ -1,5 +1,5 @@
-DESCRIPTION = "Osmux utility classes"
-DEPENDS = "libosmo-abis"
+DESCRIPTION = "Osmocom network interface library"
+DEPENDS = "libosmo-abis libtalloc lksctp-tools"
 HOMEPAGE = "http://git.osmocom.org"
 LICENSE = "GPLv2+"
 

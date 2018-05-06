@@ -1,5 +1,5 @@
 DESCRIPTION = "An utility library for Open Source Mobile Communications"
-DEPENDS = "libosmocore ortp"
+DEPENDS = "libosmocore ortp libtalloc"
 DEPENDS_append_geode = "dahdi-linux"
 HOMEPAGE = "http://openbsc.gnumonks.org"
 LICENSE = "AGPLv3"

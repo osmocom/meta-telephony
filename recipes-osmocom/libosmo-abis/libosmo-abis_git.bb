@@ -1,7 +1,5 @@
 require ${PN}.inc
 
-DEPENDS += "libtalloc"
-
 S = "${WORKDIR}/git"
 SRCREV = "49917c129b1456585258b0ebe89a513ecef823a8"
 SRC_URI = "git://git.osmocom.org/libosmo-abis.git;protocol=git"

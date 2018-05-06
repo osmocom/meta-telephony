@@ -6,8 +6,6 @@ SRC_URI = "git://git.osmocom.org/libosmocore.git;protocol=git;nobranch=1"
 PV = "0.10.2+gitr${SRCPV}"
 PR = "r0"
 
-DEPENDS += "libtalloc gnutls"
-
 PACKAGES =+ "libosmoctrl libosmocodec libosmogb libosmogsm libosmovty osmo-arfcn osmo-auc-gen"
 FILES_libosmoctrl = "${libdir}/libosmoctrl${SOLIBS}"
 FILES_libosmocodec = "${libdir}/libosmocodec${SOLIBS}"
