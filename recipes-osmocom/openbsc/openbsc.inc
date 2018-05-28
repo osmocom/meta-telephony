@@ -11,9 +11,9 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc-sccplite.service \
 	   "
 
-INC_PR = "r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r1.${META_TELEPHONY_OSMO_INC}"
 
-EXTRA_OECONF += "--enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
+EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
 inherit autotools update-rc.d pkgconfig
 
@@ -21,6 +21,7 @@ do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
+	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/
 
 	# Install sysv-init files
 	install -d ${D}${sysconfdir}/init.d
@@ -37,7 +38,7 @@ do_install_append() {
 
 }
 
-PACKAGES =+ "osmo-bsc-sccplite osmo-nitb"
+PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb"
 
 INITSCRIPT_PACKAGES = "osmo-bsc-sccplite osmo-nitb"
 
@@ -62,3 +63,9 @@ FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		${sysconfdir}/osmocom/osmo-nitb.cfg \
 		${systemd_unitdir}/system/osmo-nitb.service \
 		"
+
+CONFFILES_osmo-bsc-nat = "${sysconfdir}/osmocom/osmo-bsc_nat.cfg"
+FILES_osmo-bsc-nat = " \
+               ${bindir}/osmo-bsc_nat \
+               ${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
+               "
