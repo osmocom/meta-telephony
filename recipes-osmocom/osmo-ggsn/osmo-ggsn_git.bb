@@ -15,7 +15,8 @@ S = "${WORKDIR}/git"
 DEPENDS = "libosmocore"
 
 PACKAGES =+ " libgtp libgtp-dev libgtp-staticdev osmo-sgsnemu"
-RDEPENDS_${PN} += "iptables kernel-module-ipt-masquerade kernel-module-tun"
+RDEPENDS_${PN} += "iptables"
+RRECOMMENDS_${PN} += "kernel-module-ipt-masquerade kernel-module-tun"
 
 inherit autotools update-rc.d pkgconfig systemd
 
