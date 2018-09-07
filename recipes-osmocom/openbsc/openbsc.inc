@@ -39,13 +39,11 @@ do_install_append() {
 }
 
 PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb"
-
+SYSTEMD_PACKAGES = "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb"
 INITSCRIPT_PACKAGES = "osmo-bsc-sccplite osmo-nitb"
 
-# Do not start any of the services by default
-SYSTEMD_AUTO_ENABLE = "disable"
-
 CONFFILES_osmo-bsc-sccplite = "${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg"
+SYSTEMD_SERVICE_osmo-bsc-sccplite = "osmo-bsc-sccplite.service"
 INITSCRIPT_NAME_osmo-bsc-sccplite = "osmo-bsc-sccplite"
 INITSCRIPT_PARAMS_osmo-bsc-sccplite = "defaults 30 30"
 FILES_osmo-bsc-sccplite = " ${bindir}/osmo-bsc-sccplite \
@@ -55,16 +53,18 @@ FILES_osmo-bsc-sccplite = " ${bindir}/osmo-bsc-sccplite \
 		"
 
 CONFFILES_osmo-nitb = "${sysconfdir}/osmocom/osmo-nitb.cfg"
+SYSTEMD_SERVICE_osmo-nitb = "osmo-nitb.service"
 INITSCRIPT_NAME_osmo-nitb = "osmo-nitb"
 INITSCRIPT_PARAMS_osmo-nitb = "defaults 30 30"
 FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		/var/lib/osmocom \
 		${sysconfdir}/init.d/osmo-nitb \
 		${sysconfdir}/osmocom/osmo-nitb.cfg \
-		${systemd_unitdir}/system/osmo-nitb.service \
+		${systemd_system_unitdir}/osmo-nitb.service \
 		"
 
 CONFFILES_osmo-bsc-nat = "${sysconfdir}/osmocom/osmo-bsc_nat.cfg"
+SYSTEMD_SERVICE_osmo-bsc-nat = "osmo-bsc-nat.service"
 FILES_osmo-bsc-nat = " \
 		${bindir}/osmo-bsc_nat \
 		${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
