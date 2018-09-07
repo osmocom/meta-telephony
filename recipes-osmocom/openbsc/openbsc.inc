@@ -10,7 +10,7 @@ SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc-sccplite.init \
 	   "
 
-INC_PR = "r2.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r3.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
@@ -21,6 +21,7 @@ do_install_append() {
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
 	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-nat.cfg
+	install -m 0644 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
 
 	# Install sysv-init files
 	install -d ${D}${sysconfdir}/init.d
@@ -33,13 +34,14 @@ do_install_append() {
 	install -m 0644 ${S}/contrib/systemd/osmo-nitb.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-bsc-nat.service ${D}${systemd_system_unitdir}/
+	install -m 0644 ${S}/contrib/systemd/osmo-bsc-mgcp.service ${D}${systemd_system_unitdir}/
 
 	install -d ${D}/var/lib/osmocom
 
 }
 
-PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb"
-SYSTEMD_PACKAGES = "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb"
+PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
+SYSTEMD_PACKAGES = "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
 INITSCRIPT_PACKAGES = "osmo-bsc-sccplite osmo-nitb"
 
 CONFFILES_osmo-bsc-sccplite = "${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg"
@@ -69,4 +71,12 @@ FILES_osmo-bsc-nat = " \
 		${bindir}/osmo-bsc_nat \
 		${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
 		${systemd_system_unitdir}/osmo-bsc-nat.service \
+		"
+
+CONFFILES_osmo-bsc-mgcp = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
+SYSTEMD_SERVICE_osmo-bsc-mgcp = "osmo-bsc-mgcp.service"
+FILES_osmo-bsc-mgcp = " \
+		${bindir}/osmo-bsc_mgcp \
+		${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg \
+		${systemd_system_unitdir}/osmo-bsc-mgcp.service \
 		"
