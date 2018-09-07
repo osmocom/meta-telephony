@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libtalloc libosmocore libosmo-abis sqlite3 sqlite3-native"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -23,6 +23,20 @@ do_install_append() {
 	install -m 0644 ${S}/contrib/systemd/osmo-hlr.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${WORKDIR}/hlr.db ${D}${localstatedir}/lib/osmocom/hlr.db
 }
+
+PACKAGES =+ "libosmo-gsup-client libosmo-gsup-client-dev osmo-hlr-utils"
+
+FILES_libosmo-gsup-client = "${libdir}/libosmo-gsup-client${SOLIBS}"
+FILES_libosmo-gsup-client-dev = " \
+				${includedir}/osmocom/gsupclient \
+				${libdir}/pkgconfig/libosmo-gsup-client.pc \
+				${libdir}/libosmo-gsup-client${SOLIBSDEV} \
+				"
+
+FILES_osmo-hlr-utils = " \
+		${bindir}/osmo-hlr-db-tool \
+		${bindir}/osmo-euse-demo \
+		"
 
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
 CONFFILES_osmo-hlr = "\
