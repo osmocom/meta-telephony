@@ -20,7 +20,7 @@ do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
 	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
 	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
-	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/
+	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-nat.cfg
 
 	# Install sysv-init files
 	install -d ${D}${sysconfdir}/init.d
@@ -32,6 +32,7 @@ do_install_append() {
 	install -d ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-nitb.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
+	install -m 0644 ${S}/contrib/systemd/osmo-bsc-nat.service ${D}${systemd_system_unitdir}/
 
 	install -d ${D}/var/lib/osmocom
 
@@ -65,6 +66,7 @@ FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 
 CONFFILES_osmo-bsc-nat = "${sysconfdir}/osmocom/osmo-bsc_nat.cfg"
 FILES_osmo-bsc-nat = " \
-               ${bindir}/osmo-bsc_nat \
-               ${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
-               "
+		${bindir}/osmo-bsc_nat \
+		${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
+		${systemd_system_unitdir}/osmo-bsc-nat.service \
+		"
