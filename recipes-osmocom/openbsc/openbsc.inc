@@ -8,10 +8,9 @@ RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
 SRC_URI = "file://osmo-nitb.init \
 	   file://osmo-bsc-sccplite.init \
-	   file://osmo-bsc-sccplite.service \
 	   "
 
-INC_PR = "r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r2.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
@@ -32,7 +31,7 @@ do_install_append() {
 	# Install systemd files and enable on sysinit
 	install -d ${D}${systemd_system_unitdir}/
 	install -m 0644 ${S}/contrib/systemd/osmo-nitb.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${WORKDIR}/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
+	install -m 0644 ${S}/contrib/systemd/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
 
 	install -d ${D}/var/lib/osmocom
 
