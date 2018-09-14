@@ -6,15 +6,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
-SRC_URI = "file://osmo-nitb.init \
-	   file://osmo-bsc-sccplite.init \
-	   "
-
 INC_PR = "r3.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
-inherit autotools update-rc.d pkgconfig
+inherit autotools systemd pkgconfig
 
 do_install_append() {
 	install -d ${D}${sysconfdir}/osmocom
@@ -22,12 +18,6 @@ do_install_append() {
 	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
 	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-nat.cfg
 	install -m 0644 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
-
-	# Install sysv-init files
-	install -d ${D}${sysconfdir}/init.d
-	install -d ${D}${sysconfdir}/rc5.d
-	install -m 0775 ${WORKDIR}/osmo-nitb.init ${D}${sysconfdir}/init.d/osmo-nitb
-	install -m 0775 ${WORKDIR}/osmo-bsc-sccplite.init ${D}${sysconfdir}/init.d/osmo-bsc-sccplite
 
 	# Install systemd files and enable on sysinit
 	install -d ${D}${systemd_system_unitdir}/
@@ -42,27 +32,18 @@ do_install_append() {
 
 PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
 SYSTEMD_PACKAGES = "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
-INITSCRIPT_PACKAGES = "osmo-bsc-sccplite osmo-nitb"
 
 CONFFILES_osmo-bsc-sccplite = "${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg"
 SYSTEMD_SERVICE_osmo-bsc-sccplite = "osmo-bsc-sccplite.service"
-INITSCRIPT_NAME_osmo-bsc-sccplite = "osmo-bsc-sccplite"
-INITSCRIPT_PARAMS_osmo-bsc-sccplite = "defaults 30 30"
 FILES_osmo-bsc-sccplite = " ${bindir}/osmo-bsc-sccplite \
 		${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg \
-		${sysconfdir}/init.d/osmo-bsc-sccplite \
-		${systemd_system_unitdir}/osmo-bsc-sccplite.service \
 		"
 
 CONFFILES_osmo-nitb = "${sysconfdir}/osmocom/osmo-nitb.cfg"
 SYSTEMD_SERVICE_osmo-nitb = "osmo-nitb.service"
-INITSCRIPT_NAME_osmo-nitb = "osmo-nitb"
-INITSCRIPT_PARAMS_osmo-nitb = "defaults 30 30"
 FILES_osmo-nitb = " ${bindir}/osmo-nitb \
 		/var/lib/osmocom \
-		${sysconfdir}/init.d/osmo-nitb \
 		${sysconfdir}/osmocom/osmo-nitb.cfg \
-		${systemd_system_unitdir}/osmo-nitb.service \
 		"
 
 CONFFILES_osmo-bsc-nat = "${sysconfdir}/osmocom/osmo-bsc_nat.cfg"
@@ -70,7 +51,6 @@ SYSTEMD_SERVICE_osmo-bsc-nat = "osmo-bsc-nat.service"
 FILES_osmo-bsc-nat = " \
 		${bindir}/osmo-bsc_nat \
 		${sysconfdir}/osmocom/osmo-bsc_nat.cfg \
-		${systemd_system_unitdir}/osmo-bsc-nat.service \
 		"
 
 CONFFILES_osmo-bsc-mgcp = "${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg"
@@ -78,5 +58,4 @@ SYSTEMD_SERVICE_osmo-bsc-mgcp = "osmo-bsc-mgcp.service"
 FILES_osmo-bsc-mgcp = " \
 		${bindir}/osmo-bsc_mgcp \
 		${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg \
-		${systemd_system_unitdir}/osmo-bsc-mgcp.service \
 		"
