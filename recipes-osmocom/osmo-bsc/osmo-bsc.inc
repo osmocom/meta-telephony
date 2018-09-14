@@ -5,18 +5,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "sqlite3 libpcap libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
-do_install_append() {
-	install -d ${D}${systemd_system_unitdir}/
-	install -d ${D}${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/doc/examples/osmo-bsc/osmo-bsc.cfg ${D}${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/contrib/systemd/osmo-bsc.service ${D}${systemd_system_unitdir}/
-}
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 
 PACKAGES =+ "meas-utils ipaccess-utils bs11-utils abisip-find"
 SYSTEMD_PACKAGES = "osmo-bsc"
