@@ -5,29 +5,22 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "c-ares libosmocore libosmo-netif osmo-ggsn"
 
-INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
-PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'iu', d)}"
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'iu', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c libosmo-sccp osmo-iuh,"
 
-do_install_append() {
-	install -d ${D}${systemd_system_unitdir}/
-	install -d ${D}${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/doc/examples/osmo-sgsn/osmo-sgsn.cfg ${D}${sysconfdir}/osmocom/
-	install -m 0644 ${S}/doc/examples/osmo-gbproxy/osmo-gbproxy.cfg ${D}${sysconfdir}/osmocom/
-	install -m 0644 ${S}/doc/examples/osmo-gtphub/osmo-gtphub.cfg ${D}${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/contrib/systemd/osmo-sgsn.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/contrib/systemd/osmo-gbproxy.service ${D}${systemd_system_unitdir}/
-}
-
 PACKAGES =+ "osmo-gbproxy-doc osmo-gtphub-doc osmo-gbproxy osmo-gtphub"
-SYSTEMD_PACKAGES = "osmo-sgsn osmo-gbproxy"
+SYSTEMD_PACKAGES = "osmo-sgsn osmo-gbproxy osmo-gtphub"
 SYSTEMD_SERVICE_osmo-sgsn = "osmo-sgsn.service"
 SYSTEMD_SERVICE_osmo-gbproxy = "osmo-gbproxy.service"
+SYSTEMD_SERVICE_osmo-gtphub = "osmo-gtphub.service"
 
 CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
 
