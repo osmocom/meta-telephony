@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libtalloc libosmocore libosmo-abis sqlite3 sqlite3-native"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -15,14 +15,14 @@ do_compile_append() {
 }
 
 do_install_append() {
-	install -d ${D}${systemd_system_unitdir}/
-	install -d ${D}${sysconfdir}/osmocom/
 	install -d ${D}${localstatedir}/lib/osmocom/
-
-	install -m 0644 ${S}/doc/examples/osmo-hlr.cfg ${D}${sysconfdir}/osmocom/
-	install -m 0644 ${S}/contrib/systemd/osmo-hlr.service ${D}${systemd_system_unitdir}/
 	install -m 0644 ${WORKDIR}/hlr.db ${D}${localstatedir}/lib/osmocom/hlr.db
 }
+
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 
 PACKAGES =+ "libosmo-gsup-client libosmo-gsup-client-dev osmo-hlr-utils"
 
