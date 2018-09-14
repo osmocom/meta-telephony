@@ -6,29 +6,20 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
-INC_PR = "r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r4.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
 inherit autotools systemd pkgconfig
 
 do_install_append() {
-	install -d ${D}${sysconfdir}/osmocom
-	install -m 0660 ${S}/doc/examples/osmo-nitb/nanobts/openbsc.cfg ${D}${sysconfdir}/osmocom/osmo-nitb.cfg
-	install -m 0660 ${S}/doc/examples/osmo-bsc-sccplite/osmo-bsc-sccplite.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-sccplite.cfg
-	install -m 0644 ${S}/doc/examples/osmo-bsc_nat/osmo-bsc_nat.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-nat.cfg
-	install -m 0644 ${S}/doc/examples/osmo-bsc_mgcp/mgcp.cfg ${D}${sysconfdir}/osmocom/osmo-bsc-mgcp.cfg
-
-	# Install systemd files and enable on sysinit
-	install -d ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/contrib/systemd/osmo-nitb.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/contrib/systemd/osmo-bsc-sccplite.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/contrib/systemd/osmo-bsc-nat.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/contrib/systemd/osmo-bsc-mgcp.service ${D}${systemd_system_unitdir}/
-
 	install -d ${D}/var/lib/osmocom
-
 }
+
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 
 PACKAGES =+ "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
 SYSTEMD_PACKAGES = "osmo-bsc-nat osmo-bsc-sccplite osmo-nitb osmo-bsc-mgcp"
