@@ -5,17 +5,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libosmocore libosmo-netif"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
-do_install_append() {
-	install -d ${D}${systemd_system_unitdir}/
-	install -d ${D}${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/doc/examples/osmo-mgw/osmo-mgw.cfg ${D}${sysconfdir}/osmocom/osmo-mgw.cfg
-	install -m 0644 ${S}/contrib/systemd/osmo-mgw.service ${D}${systemd_system_unitdir}/
-}
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 
 PACKAGES =+ "libosmo-mgcp libosmo-mgcp-dev libosmo-mgcp-client libosmo-mgcp-client-dev"
 SYSTEMD_SERVICE_osmo-mgw = "osmo-mgw.service"
