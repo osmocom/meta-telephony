@@ -5,21 +5,18 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 
 DEPENDS = "libosmocore"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
+
+inherit autotools pkgconfig systemd
+
+PACKAGECONFIG ??= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
+    "
+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 
 PACKAGES =+ " libgtp libgtp-dev libgtp-staticdev osmo-sgsnemu"
 RDEPENDS_${PN} += "iptables"
 RRECOMMENDS_${PN} += "kernel-module-ipt-masquerade kernel-module-tun"
-
-inherit autotools pkgconfig systemd
-
-do_install_append() {
-	install -d ${D}${systemd_system_unitdir}/
-	install -d ${D}/${sysconfdir}/osmocom/
-
-	install -m 0644 ${S}/contrib/osmo-ggsn.service ${D}${systemd_system_unitdir}/
-	install -m 0644 ${S}/doc/examples/osmo-ggsn.cfg ${D}${sysconfdir}/osmocom/
-}
 
 SYSTEMD_SERVICE_osmo-ggsn = "osmo-ggsn.service"
 
