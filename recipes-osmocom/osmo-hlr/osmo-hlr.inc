@@ -10,6 +10,7 @@ INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
 inherit autotools pkgconfig systemd
 
 do_compile_append() {
+	rm -f ${WORKDIR}/hlr.db
 	sqlite3 ${WORKDIR}/hlr.db < ${S}/sql/hlr.sql
 }
 
