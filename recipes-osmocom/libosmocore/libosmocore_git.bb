@@ -24,3 +24,15 @@ RREPLACES_libosmogsm = "DONOTREPLACElibosmocore"
 RREPLACES_libosmovty = "DONOTREPLACElibosmocore"
 
 EXTRA_OECONF += "--disable-pcsc"
+
+# OS#4062: Some gcc version (< 7.3.0) on ARM generate wrong code for __thread
+# variables that crash at runtime. It seems, due to some unknown reason, that we
+# are not affected by this bug with toolchain from poky pyro (6.4.0). However,
+# libosmocore as of e188b8cd98f599468fbb200c7d590de955daf761 applies some
+# CFLAGS="-mtls-dialect=gnu2" to workaround the issue automatically. But same
+# toolchain contains an "ld" that crashes when those flags are applied.
+# Fortunately, libosmocore provides a way to disable the workaround, and since
+# we are not affected by the bug, we are fine with that. If the toolchain had
+# the TLS runtime bug, then we'd had to build with -O0. Can be probably dropped
+# once we move to newer toolchain.
+EXTRA_OECONF +=  "--disable-detect-tls-gcc-arm-bug"
