@@ -1,7 +1,7 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "319a52b577843f6eebb00d8039c2e2479adc8da5"
+SRCREV = "d7ef94c0bb48797cb53947773c9e59ccdedc72bb"
 SRC_URI = "git://git.osmocom.org/osmo-sgsn.git;protocol=git"
-PV = "1.4.0+gitr${SRCPV}"
+PV = "1.5.0+gitr${SRCPV}"
 PR = "${INC_PR}.0"

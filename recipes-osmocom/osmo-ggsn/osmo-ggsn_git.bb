@@ -1,9 +1,9 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "f5a268a96d7d3c7bcfbc530f2a0b334cf25d3e3c"
+SRCREV = "67aebc9d1c6b0773b082b496a579be1a80c2a9b2"
 SRC_URI = "git://git.osmocom.org/osmo-ggsn                   \
            file://libgtp-queue_depth_32.patch		    \
           "
-PV = "1.3.0+gitr${SRCPV}"
+PV = "1.4.0+gitr${SRCPV}"
 PR = "${INC_PR}.0"
