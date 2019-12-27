@@ -6,11 +6,15 @@ INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
-DEPENDS = "libtalloc gnutls lksctp-tools"
+DEPENDS = "libtalloc"
 
 PACKAGECONFIG ??= "\
+    gnutls \
     libusb \
+    libsctp \
     "
+PACKAGECONFIG[gnutls] = "--enable-gnutls,--disable-gnutls,gnutls,"
 PACKAGECONFIG[libusb] = "--enable-libusb,--disable-libusb,libusb,"
+PACKAGECONFIG[libsctp] = "--enable-libsctp,--disable-libsctp,lksctp-tools,"
 
 inherit autotools pkgconfig
