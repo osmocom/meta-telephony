@@ -1,10 +1,10 @@
 require ${PN}.inc
 
-PV = "1.3.1+gitr${SRCPV}"
+PV = "1.3.2+gitr${SRCPV}"
 PRINC = "0"
 PR = "${INC_PR}.0"
 
-SRCREV = "bb414bf8b104e1b56e61bb804c75d30cda2a9e3c"
+SRCREV = "3f457a3b79e2908664b40eab9ca8e70c44a54898"
 SRC_URI += "git://git.osmocom.org/openbsc.git;protocol=git"
 
 S = "${WORKDIR}/git/openbsc"

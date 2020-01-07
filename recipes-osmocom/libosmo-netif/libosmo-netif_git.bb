@@ -1,7 +1,7 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "592057bb33dc0c336a63003cd7a3a67944d92757"
+SRCREV = "b8121e79ef53b30df535fb38987b3a48853ebbe9"
 SRC_URI = "git://git.osmocom.org/libosmo-netif.git;protocol=git"
-PV = "0.6.0+gitr${SRCPV}"
+PV = "0.7.0+gitr${SRCPV}"
 PR = "${INC_PR}.0"
