@@ -12,4 +12,8 @@ PACKAGECONFIG ??= "\
     "
 PACKAGECONFIG[libsctp] = "--enable-libsctp,--disable-libsctp,lksctp-tools,"
 
+# Workaround to oe-core meta/site/* CONFIG_SITE files passed to autoconf forcing unavailability of netinet/sctp.h.
+# Patch fixing issue upstream: https://patchwork.openembedded.org/patch/168892/
+CACHED_CONFIGUREVARS += "${@bb.utils.contains('PACKAGECONFIG', 'libsctp', 'ac_cv_header_netinet_sctp_h=yes', '',d)}"
+
 inherit autotools pkgconfig
