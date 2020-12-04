@@ -12,9 +12,11 @@ PACKAGECONFIG ??= "\
     gnutls \
     libusb \
     libsctp \
+    libmnl \
     "
 PACKAGECONFIG[gnutls] = "--enable-gnutls,--disable-gnutls,gnutls,"
 PACKAGECONFIG[libusb] = "--enable-libusb,--disable-libusb,libusb,"
 PACKAGECONFIG[libsctp] = "--enable-libsctp,--disable-libsctp,lksctp-tools,"
+PACKAGECONFIG[libmnl] = "--enable-libmnl,--disable-libmnl,libmnl,"
 
 inherit autotools pkgconfig
