@@ -1,9 +1,9 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "2862f9082ed4f16383a134e1112610d76ad91bf0"
+SRCREV = "5681a3254c1727d4926ac6d36800fd63d87ad7a2"
 SRC_URI = "git://git.osmocom.org/libosmocore.git;protocol=git;nobranch=1"
-PV = "1.3.0+gitr${SRCPV}"
+PV = "1.4.1+gitr${SRCPV}"
 PR = "${INC_PR}.0"
 
 PACKAGES =+ "libosmoctrl libosmocodec libosmogb libosmogsm libosmovty osmo-arfcn osmo-auc-gen osmo-config-merge"
