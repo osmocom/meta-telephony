@@ -16,19 +16,12 @@ PACKAGECONFIG ??= "\
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c libosmo-sccp osmo-iuh,"
 
-PACKAGES =+ "osmo-gbproxy-doc osmo-gtphub-doc osmo-gbproxy osmo-gtphub"
-SYSTEMD_PACKAGES = "osmo-sgsn osmo-gbproxy osmo-gtphub"
+PACKAGES =+ "osmo-gtphub-doc osmo-gtphub"
+SYSTEMD_PACKAGES = "osmo-sgsn osmo-gtphub"
 SYSTEMD_SERVICE_osmo-sgsn = "osmo-sgsn.service"
-SYSTEMD_SERVICE_osmo-gbproxy = "osmo-gbproxy.service"
 SYSTEMD_SERVICE_osmo-gtphub = "osmo-gtphub.service"
 
 CONFFILES_osmo-sgsn = "${sysconfdir}/osmocom/osmo-sgsn.cfg"
-
-FILES_osmo-gbproxy = " \
-		${bindir}/osmo-gbproxy \
-		${sysconfdir}/osmocom/osmo-gbproxy.cfg \
-		"
-CONFFILES_osmo-gbproxy = "${sysconfdir}/osmocom/osmo-gbproxy.cfg"
 
 FILES_osmo-gtphub = " \
 		${bindir}/osmo-gtphub \
@@ -36,5 +29,4 @@ FILES_osmo-gtphub = " \
 		"
 CONFFILES_osmo-gtphub = "${sysconfdir}/osmocom/osmo-gtphub.cfg"
 
-FILES_osmo-gbproxy-doc = " ${docdir}/osmo-sgsn/examples/osmo-gbproxy "
 FILES_osmo-gtphub-doc = " ${docdir}/osmo-sgsn/examples/osmo-gtphub "
