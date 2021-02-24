@@ -1,7 +1,7 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "0.9.39"
-SRC_URI = "git://gerrit.osmocom.org/libasn1c.git;protocol=https;tag=${SRCREV};nobranch=1"
-PV = "${SRCREV}+gitr${SRCPV}"
+SRCREV = "${AUTOREV}"
+SRC_URI = "git://gerrit.osmocom.org/libasn1c.git;protocol=https"
+PV = "0.9.39+gitr${SRCPV}"
 PR = "${INC_PR}.0"
