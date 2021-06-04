@@ -38,6 +38,8 @@ FILES_osmo-hlr-utils = " \
 		${bindir}/osmo-euse-demo \
 		"
 
+FILES_${PN} =+ "${datadir}/osmocom/*"
+
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
 CONFFILES_osmo-hlr = "\
 		${sysconfdir}/osmocom/osmo-hlr.cfg \
