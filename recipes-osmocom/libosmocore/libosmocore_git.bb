@@ -1,10 +1,10 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "1.5.1"
+SRCREV = "1.6.0"
 SRC_URI = "git://git.osmocom.org/libosmocore.git;protocol=git;tag=${SRCREV};nobranch=1"
-PV = "1.5.1+gitr${SRCPV}"
-PR = "${INC_PR}.1"
+PV = "1.6.0+gitr${SRCPV}"
+PR = "${INC_PR}.0"
 
 PACKAGES =+ "libosmoctrl libosmocodec libosmogb libosmogsm libosmovty osmo-arfcn osmo-auc-gen osmo-config-merge"
 FILES_libosmoctrl = "${libdir}/libosmoctrl${SOLIBS}"
