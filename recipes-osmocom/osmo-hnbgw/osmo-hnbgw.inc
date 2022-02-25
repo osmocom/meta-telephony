@@ -3,7 +3,7 @@ HOMEPAGE = "https://osmocom.org/projects/osmohnbgw"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "libosmocore libosmo-netif libosmo-sccp osmo-iuh libasn1c lksctp-tools"
+DEPENDS = "libosmocore libosmo-netif libosmo-sccp osmo-iuh libasn1c lksctp-tools osmo-mgw"
 
 INC_PR="r0.${META_TELEPHONY_OSMO_INC}"
 
