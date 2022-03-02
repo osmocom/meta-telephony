@@ -1,0 +1,34 @@
+From 2e0112520892b8f6a794c16bf3d025a7d10a89a5 Mon Sep 17 00:00:00 2001
+From: Oliver Smith <osmith@sysmocom.de>
+Date: Wed, 2 Mar 2022 11:24:31 +0100
+Subject: [PATCH] libgtp: set PDP_MAX to 128
+
+Reduce PDP_MAX and therefore QUEUE_SIZE (which is PDP_MAX * 2, see
+gtp/queue.h). Harald explained why:
+
+  libgtp statically allocates immensely large queues for packet
+  re-transmissions by default, way too much to run OsmoSGSN or
+  OpenGGSN/OsmoGGSN on the small ARM926EJS of sysmoBTS 1002.
+
+Related: https://gerrit.osmocom.org/c/meta-telephony/+/4092/2#message-8ec2174fac6c0bf3d9aab1270a7ebe06955d3bea
+Change-Id: I97d5db8f2def4d628a6c4e67c27f07c7200b94d4
+---
+ gtp/pdp.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gtp/pdp.h b/gtp/pdp.h
+index 4dcdde46..9587f31e 100644
+--- a/gtp/pdp.h
++++ b/gtp/pdp.h
+@@ -24,7 +24,7 @@ struct gsn_t;
+ #define LOGPDPX(ss, level, pdp, fmt, args...)				\
+ 	LOGP(ss, level, "PDP(%s:%u): " fmt, imsi_gtp2str(&(pdp)->imsi), (pdp)->nsapi, ## args)
+ 
+-#define PDP_MAX 1024		/* Max number of PDP contexts */
++#define PDP_MAX 128		/* Max number of PDP contexts */
+ #define PDP_MAXNSAPI 16		/* Max number of NSAPI */
+ 
+ #define PDP_EUA_ORG_IETF	0xF1
+-- 
+2.30.2
+
