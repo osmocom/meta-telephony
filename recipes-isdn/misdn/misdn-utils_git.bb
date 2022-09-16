@@ -4,7 +4,7 @@ LICENSE = "LGPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=55ca817ccb7d5b5b66355690e9abc605"
 
 SRC_URI = "\
-    git://git.misdn.eu/mISDNuser.git;branch=socket \
+    git://github.com/ISDN4Linux/mISDNuser;protocol=https \
     file://0001-mbuffer-data-size.patch \
 "
 # Release v2.0.19

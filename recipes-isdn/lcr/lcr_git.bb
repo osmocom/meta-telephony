@@ -8,7 +8,7 @@ PV = "1.14+gitr${SRCPV}"
 PR = "r4"
 
 SRCREV = "38fce218f8897d120aeba56e811ef7dada898c2c"
-SRC_URI = "git://git.misdn.eu/lcr.git \
+SRC_URI = "git://github.com/fairwaves/lcr;protocol=https \
 	   file://lcr-disable-gsmfr.diff \
 	   file://0001-Fixed-compiler-warnings.patch \
            file://lcr.init             "

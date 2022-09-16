@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
                     file://COPYING.library;md5=2d5025d4aa3495befef8f17206a5b0a1 "
 
 # Fork with wavecom support
-SRC_URI = "git://git.gnumonks.org/openmoko-gsmd.git;branch=master \
+SRC_URI = "git://git.gnumonks.org/openmoko-gsmd;protocol=https;branch=master \
            file://gsmd \
            file://cell-log \
            file://default"
