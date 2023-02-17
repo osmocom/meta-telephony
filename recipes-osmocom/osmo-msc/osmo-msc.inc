@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libdbi libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw osmo-hlr"
 
-INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -17,6 +17,12 @@ PACKAGECONFIG ??= "\
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
 PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c osmo-iuh,"
 PACKAGECONFIG[smpp] = "--enable-smpp,--disable-smpp,libsmpp34,"
+
+# StateDirectory requires systemd >= v235, but poky pyro ships with v232 (SYS#6340):
+do_install_append() {
+	sed -i '/^StateDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+	sed -i '/^WorkingDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+}
 
 RDEPENDS_${PN} = "libdbd-sqlite3"
 

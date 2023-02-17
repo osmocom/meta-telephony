@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "sqlite3 libpcap libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
 
-INC_PR="r1.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -13,6 +13,12 @@ PACKAGECONFIG ??= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
     "
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
+
+# StateDirectory requires systemd >= v235, but poky pyro ships with v232 (SYS#6340):
+do_install_append() {
+	sed -i '/^StateDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+	sed -i '/^WorkingDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+}
 
 PACKAGES =+ "meas-utils ipaccess-utils bs11-utils abisip-find"
 SYSTEMD_PACKAGES = "osmo-bsc"

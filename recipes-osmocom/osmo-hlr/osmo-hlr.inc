@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libtalloc libosmocore libosmo-abis sqlite3 sqlite3-native"
 
-INC_PR="r2.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -17,6 +17,10 @@ do_compile_append() {
 do_install_append() {
 	install -d ${D}${localstatedir}/lib/osmocom/
 	install -m 0644 ${WORKDIR}/hlr.db ${D}${localstatedir}/lib/osmocom/hlr.db
+
+	# StateDirectory requires systemd >= v235, but poky pyro ships with v232 (SYS#6340):
+	sed -i '/^StateDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+	sed -i '/^WorkingDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
 }
 
 PACKAGECONFIG ??= "\
