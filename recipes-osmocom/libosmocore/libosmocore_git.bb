@@ -24,7 +24,7 @@ RREPLACES_libosmogb = "DONOTREPLACElibosmocore"
 RREPLACES_libosmogsm = "DONOTREPLACElibosmocore"
 RREPLACES_libosmovty = "DONOTREPLACElibosmocore"
 
-EXTRA_OECONF += "--disable-pcsc"
+EXTRA_OECONF += "--disable-pcsc --disable-uring"
 
 # OS#4062: Some gcc version (< 7.3.0) on ARM generate wrong code for __thread
 # variables that crash at runtime. It seems, due to some unknown reason, that we
