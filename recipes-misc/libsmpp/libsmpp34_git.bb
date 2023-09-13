@@ -6,9 +6,9 @@ SECTION = "libs"
 DEPENDS = "libxml2"
 
 S = "${WORKDIR}/git"
-SRCREV = "1.14.2"
+SRCREV = "1.14.3"
 SRC_URI = "git://gerrit.osmocom.org/libsmpp34.git;protocol=https;tag=${SRCREV};nobranch=1"
-PV = "1.14.2+gitr${SRCPV}"
+PV = "1.14.3+gitr${SRCPV}"
 PR = "r0"
 
 PARALLEL_MAKE = ""
