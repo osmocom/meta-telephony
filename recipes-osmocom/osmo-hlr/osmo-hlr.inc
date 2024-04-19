@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "libtalloc libosmocore libosmo-abis sqlite3 sqlite3-native"
 
-INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -21,6 +21,10 @@ do_install_append() {
 	# StateDirectory requires systemd >= v235, but poky pyro ships with v232 (SYS#6340):
 	sed -i '/^StateDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
 	sed -i '/^WorkingDirectory=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+
+	# Run as root (OS#5684):
+	sed -i '/^User=/d' "${D}${systemd_system_unitdir}/${PN}.service"
+	sed -i '/^Group=/d' "${D}${systemd_system_unitdir}/${PN}.service"
 }
 
 PACKAGECONFIG ??= "\
