@@ -16,10 +16,10 @@ Change-Id: I97d5db8f2def4d628a6c4e67c27f07c7200b94d4
  gtp/pdp.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/gtp/pdp.h b/gtp/pdp.h
+diff --git a/include/osmocom/gtp/pdp.h b/include/osmocom/gtp/pdp.h
 index 4dcdde46..9587f31e 100644
---- a/gtp/pdp.h
-+++ b/gtp/pdp.h
+--- a/include/osmocom/gtp/pdp.h
++++ b/include/osmocom/gtp/pdp.h
 @@ -24,7 +24,7 @@ struct gsn_t;
  #define LOGPDPX(ss, level, pdp, fmt, args...)				\
  	LOGP(ss, level, "PDP(%s:%u): " fmt, imsi_gtp2str(&(pdp)->imsi), (pdp)->nsapi, ## args)
