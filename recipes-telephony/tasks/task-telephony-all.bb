@@ -7,7 +7,7 @@ PR = "r5"
 
 DEPENDS = "\
         libosmo-abis \
-        libosmo-sccp \
+        libosmo-sigtran \
         libosmocore \
         openbsc \
         packagegroup-osmocom \

@@ -3,9 +3,9 @@ HOMEPAGE = "https://osmocom.org/projects/osmohnbgw"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "libosmocore libosmo-netif libosmo-sccp libasn1c lksctp-tools"
+DEPENDS = "libosmocore libosmo-netif libosmo-sigtran libasn1c lksctp-tools"
 
-INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 # Workaround to oe-core meta/site/* CONFIG_SITE files passed to autoconf forcing unavailability of netinet/sctp.h.
 # Patch fixing issue upstream: https://patchwork.openembedded.org/patch/168892/

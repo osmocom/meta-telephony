@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 DEPENDS = "c-ares libosmocore libosmo-netif osmo-ggsn osmo-hlr"
 
-INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 
@@ -14,7 +14,7 @@ PACKAGECONFIG ??= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'iu', d)} \
     "
 PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir"
-PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c libosmo-sccp osmo-iuh,"
+PACKAGECONFIG[iu] = "--enable-iu,--disable-iu,libasn1c libosmo-sigtran osmo-iuh,"
 
 do_install_append() {
 	# StateDirectory requires systemd >= v235, but poky pyro ships with v232 (SYS#6340):

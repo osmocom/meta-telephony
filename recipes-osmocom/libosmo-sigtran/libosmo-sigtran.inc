@@ -37,5 +37,3 @@ FILES_osmo-stp = " \
 		${sysconfdir}/osmocom/osmo-stp.cfg \
 		"
 CONFFILES_osmo-stp = "${sysconfdir}/osmocom/osmo-stp.cfg"
-
-ALLOW_EMPTY_libosmo-sccp = "1"

@@ -3,7 +3,7 @@ SDK-OSMO = " \
     libusb1-dev \
     libtalloc-dev \
     libosmocore-dev \
-    libosmo-sccp-staticdev \
+    libosmo-sigtran-dev \
     libosmo-abis-dev \
     libosmotrau-dev \
     libgtp-dev \

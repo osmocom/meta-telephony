@@ -3,9 +3,9 @@ HOMEPAGE = "https://osmocom.org/projects/osmobsc"
 LICENSE = "AGPLv3"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
-DEPENDS = "sqlite3 libpcap libosmocore libosmo-abis libosmo-sccp libosmo-netif osmo-mgw"
+DEPENDS = "sqlite3 libpcap libosmocore libosmo-abis libosmo-sigtran libosmo-netif osmo-mgw"
 
-INC_PR="r3.${META_TELEPHONY_OSMO_INC}"
+INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
 inherit autotools pkgconfig systemd
 

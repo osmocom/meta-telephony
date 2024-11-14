@@ -1,12 +1,12 @@
 DESCRIPTION = "OpenBSC a Free Software GSM BaseStationController"
-DEPENDS = "libdbi libosmocore libosmo-sccp libosmo-abis libosmo-netif osmo-ggsn libsmpp34 bcg729 libgsm libpcap"
+DEPENDS = "libdbi libosmocore libosmo-sigtran libosmo-abis libosmo-netif osmo-ggsn libsmpp34 bcg729 libgsm libpcap"
 HOMEPAGE = "http://openbsc.osmocom.org/"
 LICENSE = "AGPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=73f1eb20517c55bf9493b7dd6e480788"
 
 RDEPENDS_osmo-nitb = "libdbd-sqlite3"
 
-INC_PR = "r4.${META_TELEPHONY_OSMO_INC}"
+INC_PR = "r5.${META_TELEPHONY_OSMO_INC}"
 
 EXTRA_OECONF += "--enable-nat --enable-osmo-bsc --enable-smpp --enable-mgcp-transcoding --with-g729"
 
