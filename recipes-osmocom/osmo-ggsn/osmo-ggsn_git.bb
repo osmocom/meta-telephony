@@ -1,7 +1,7 @@
 require ${PN}.inc
 
 S = "${WORKDIR}/git"
-SRCREV = "1.13.0"
+SRCREV = "1.14.0"
 SRC_URI = "git://gerrit.osmocom.org/osmo-ggsn;protocol=https;tag=${SRCREV};nobranch=1 \
            file://0001-libgtp-set-PDP_MAX-to-128.patch	    \
           "
