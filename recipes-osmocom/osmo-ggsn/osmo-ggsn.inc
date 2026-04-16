@@ -3,7 +3,7 @@ HOMEPAGE = "https://osmocom.org/projects/openggsn"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 
-DEPENDS = "libosmocore"
+DEPENDS = "libosmocore libosmo-netif"
 
 INC_PR="r4.${META_TELEPHONY_OSMO_INC}"
 
